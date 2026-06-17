@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comparison | Lux Coder vs Claude Code, Antigravity, Codex</title>
+    <meta name="description" content="See how Lux Coder compares to Claude Code, Google Antigravity, OpenAI Codex, and basic Opencode forks. Feature-by-feature breakdown with honest pricing analysis.">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/jpeg" href="lux-coder-logo.jpeg">
+    <!-- Open Graph -->
+    <meta property="og:title" content="Comparison | Lux Coder vs Claude Code, Antigravity, Codex">
+    <meta property="og:description" content="Transparent feature-by-feature breakdown of Lux Coder vs. every major AI coding tool. Model freedom, memory, exports, and real pricing.">
+    <meta property="og:image" content="infographic-why-lux-wins.png">
+    <meta property="og:type" content="website">
+    <style>
+        .sharp-edge { border-radius: 2px !important; }
+
+        /* ── Competitor Cards ── */
+        .competitor-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.25rem;
+            margin-top: 2rem;
+        }
+        @media (max-width: 768px) {
+            .competitor-grid { grid-template-columns: 1fr; }
+        }
+        .comp-card {
+            background: rgba(13, 17, 28, 0.45);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            padding: 1.75rem;
+            transition: var(--transition);
+        }
+        .comp-card:hover {
+            border-color: rgba(255, 61, 0, 0.2);
+            box-shadow: 0 0 20px rgba(255, 61, 0, 0.03);
+        }
+        .comp-card h4 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .comp-card p {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            line-height: 1.65;
+        }
+        .comp-card .comp-tag {
+            display: inline-block;
+            padding: 0.2rem 0.6rem;
+            font-size: 0.68rem;
+            font-family: var(--font-mono);
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            border-radius: 2px;
+            margin-top: 0.75rem;
+        }
+
+        .lux-card {
+            grid-column: 1 / -1;
+            border: 1px solid var(--accent-cyan) !important;
+            background: rgba(0, 229, 255, 0.02) !important;
+            box-shadow: 0 0 40px rgba(0, 229, 255, 0.06);
+        }
+        .lux-card:hover {
+            border-color: var(--accent-cyan) !important;
+            box-shadow: 0 0 60px rgba(0, 229, 255, 0.12) !important;
+        }
+
+        /* ── Comparison Matrix ── */
+        .matrix-wrap {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin-top: 2rem;
+        }
+        .matrix-table {
+            width: 100%;
+            min-width: 720px;
+            border-collapse: collapse;
+            background: rgba(13, 17, 28, 0.45);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+        }
+        .matrix-table thead th {
+            padding: 1rem 1.25rem;
+            font-size: 0.78rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--text-muted);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            text-align: center;
+            white-space: nowrap;
+        }
+        .matrix-table thead th:first-child { text-align: left; }
+        .matrix-table thead th.lux-col {
+            color: var(--accent-cyan);
+            background: rgba(0, 229, 255, 0.03);
+            border-left: 1px solid rgba(0, 229, 255, 0.12);
+            border-right: 1px solid rgba(0, 229, 255, 0.12);
+        }
+        .matrix-table tbody td {
+            padding: 0.9rem 1.25rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            text-align: center;
+            vertical-align: middle;
+        }
+        .matrix-table tbody td:first-child {
+            text-align: left;
+            font-weight: 600;
+            color: #fff;
+        }
+        .matrix-table tbody td.lux-col {
+            background: rgba(0, 229, 255, 0.02);
+            border-left: 1px solid rgba(0, 229, 255, 0.08);
+            border-right: 1px solid rgba(0, 229, 255, 0.08);
+            color: var(--accent-cyan);
+            font-weight: 600;
+        }
+        .matrix-table tbody tr:hover {
+            background: rgba(255, 255, 255, 0.01);
+        }
+        .matrix-table tbody tr:last-child td { border-bottom: none; }
+        .check { color: var(--accent-green); }
+        .cross { color: rgba(255, 255, 255, 0.2); }
+        .partial { color: var(--accent-orange); }
+
+        /* ── Pricing Comparison ── */
+        .price-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.25rem;
+            margin-top: 2rem;
+        }
+        @media (max-width: 900px) {
+            .price-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 520px) {
+            .price-grid { grid-template-columns: 1fr; }
+        }
+        .price-card {
+            background: rgba(13, 17, 28, 0.45);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            padding: 1.75rem;
+            text-align: center;
+            transition: var(--transition);
+        }
+        .price-card:hover {
+            border-color: rgba(255, 255, 255, 0.08);
+        }
+        .price-card.lux-price {
+            border-color: var(--accent-cyan);
+            background: rgba(0, 229, 255, 0.02);
+            box-shadow: 0 0 30px rgba(0, 229, 255, 0.06);
+        }
+        .price-card h4 {
+            font-size: 0.95rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        .price-card .price-value {
+            font-family: var(--font-mono);
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 0.35rem;
+        }
+        .price-card .price-note {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+        .price-card .price-lock {
+            display: inline-block;
+            margin-top: 0.75rem;
+            padding: 0.2rem 0.6rem;
+            font-size: 0.68rem;
+            font-family: var(--font-mono);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            border-radius: 2px;
+        }
+
+        /* ── Why Wins Grid ── */
+        .wins-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.25rem;
+            margin-top: 2rem;
+        }
+        @media (max-width: 768px) {
+            .wins-grid { grid-template-columns: 1fr; }
+        }
+        .win-item {
+            background: rgba(13, 17, 28, 0.45);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            padding: 2rem;
+            text-align: center;
+            transition: var(--transition);
+        }
+        .win-item:hover {
+            border-color: rgba(0, 229, 255, 0.2);
+            box-shadow: 0 0 25px rgba(0, 229, 255, 0.05);
+            transform: translateY(-3px);
+        }
+        .win-item .win-icon { font-size: 2rem; margin-bottom: 0.75rem; }
+        .win-item h4 { font-size: 1rem; font-weight: 700; color: #fff; margin-bottom: 0.4rem; }
+        .win-item p { font-size: 0.82rem; color: var(--text-secondary); line-height: 1.6; }
+    </style>
+</head>
+<body>
+    <!-- ═══════════════ HEADER ═══════════════ -->
+    <header>
+        <div class="nav-container">
+            <a class="logo" href="index.html">
+                <img src="lux-coder-logo.jpeg" alt="Lux Coder" class="sharp-edge" style="border-radius: 2px;">
+                <span>Lux Coder</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="features.html">Features</a></li>
+                <li><a href="comparison.html" style="color: var(--accent-cyan);">Comparison</a></li>
+                <li><a href="download.html">Download</a></li>
+                <li><a href="index.html#pricing">Pricing</a></li>
+                <li><a href="index.html#agent-integration">Lux Agent</a></li>
+                <li><a href="license.html">License Lookup</a></li>
+                <li><a href="affiliate.html">Affiliate</a></li>
+            </ul>
+            <a href="index.html#pricing" class="nav-cta sharp-edge">Get Coder</a>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- ═══════════════ HERO ═══════════════ -->
+    <section class="page-hero scanline-overlay reveal" style="padding-top: 10rem; padding-bottom: 4.5rem;">
+        <span class="section-tag" style="color: var(--accent-orange); background: rgba(255, 145, 0, 0.05); border-color: rgba(255, 145, 0, 0.12);">Control Assessment</span>
+        <h1 class="section-title" style="font-size: clamp(2rem, 4.5vw, 3.2rem); max-width: 780px; margin: 0 auto 1rem;">
+            Why builders choose <span style="color: var(--accent-cyan);">Lux Coder</span> over everything else.
+        </h1>
+        <p class="section-subtitle" style="max-width: 640px; margin: 0 auto;">
+            A transparent, feature-by-feature breakdown of Lux Coder vs. Claude Code, Antigravity, OpenAI Codex, and basic Opencode forks.
+        </p>
+    </section>
+
+    <!-- ═══════════════ POSITIONING ═══════════════ -->
+    <section class="reveal" style="padding-top: 3rem;">
+        <span class="section-tag">Ecosystem Reality</span>
+        <h2 class="section-title">Every tool has trade-offs. Know yours.</h2>
+        <p class="section-subtitle">Each competitor gives you their coding agent inside their ecosystem. Lux Coder gives you a branded, multi-model, local-first command center around the <em>whole</em> coding workflow.</p>
+
+        <div class="competitor-grid">
+            <!-- Claude Code -->
+            <div class="comp-card sharp-edge">
+                <h4 style="color: #E57373;"><span>✕</span> Claude Code</h4>
+                <p>Terminal-first coding agent. Anthropic-only models. Subscription lock-in at $20/mo (Pro) or $200/mo (Max). Powerful inside its lane — but that lane is one provider.</p>
+                <span class="comp-tag" style="color: #E57373; background: rgba(229, 115, 115, 0.06); border: 1px solid rgba(229, 115, 115, 0.12);">Anthropic Only</span>
+            </div>
+
+            <!-- Antigravity -->
+            <div class="comp-card sharp-edge">
+                <h4 style="color: #FFD54F;"><span>✕</span> Antigravity</h4>
+                <p>Standalone agentic workspace by Google DeepMind. Google-only ecosystem with Gemini models. High seat cost via Google Workspace. Excellent tech, closed garden.</p>
+                <span class="comp-tag" style="color: #FFD54F; background: rgba(255, 213, 79, 0.06); border: 1px solid rgba(255, 213, 79, 0.12);">Google Only</span>
+            </div>
+
+            <!-- OpenAI Codex -->
+            <div class="comp-card sharp-edge">
+                <h4 style="color: #64B5F6;"><span>✕</span> OpenAI Codex</h4>
+                <p>OpenAI's coding agent — CLI, IDE plugin, and desktop app. Included in eligible ChatGPT plans with usage limits. Token/credit-based pricing across tiers. Strong — but OpenAI-native only.</p>
+                <span class="comp-tag" style="color: #64B5F6; background: rgba(100, 181, 246, 0.06); border: 1px solid rgba(100, 181, 246, 0.12);">OpenAI Only</span>
+            </div>
+
+            <!-- Basic Opencode -->
+            <div class="comp-card sharp-edge">
+                <h4 style="color: #90A4AE;"><span>✕</span> Basic Opencode</h4>
+                <p>Powerful open-source terminal base. Requires manual configuration, API key wiring, and lacks visual UI polish. A solid engine — but no dashboard, no memory system, no branded exports.</p>
+                <span class="comp-tag" style="color: #90A4AE; background: rgba(144, 164, 174, 0.06); border: 1px solid rgba(144, 164, 174, 0.12);">DIY Config</span>
+            </div>
+
+            <!-- Lux Coder -->
+            <div class="comp-card lux-card sharp-edge">
+                <h4 style="color: var(--accent-cyan);">
+                    <img src="lux-coder-logo.jpeg" alt="Lux Coder" style="width: 28px; height: 28px; border-radius: 2px;">
+                    Lux Coder
+                </h4>
+                <p style="font-size: 0.95rem; color: #fff; line-height: 1.7;">A branded, multi-model, local-first command center around the whole coding workflow. Use 45+ models from any provider. Keep project memory on your machine. Export client-ready branded reports. Run 16 specialist agents. Connect to Lux Agent for CRM, hardware, and business system integration.</p>
+                <span class="comp-tag" style="color: var(--accent-cyan); background: rgba(0, 229, 255, 0.06); border: 1px solid rgba(0, 229, 255, 0.15);">Multi-Model · BYOK · Local-First</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════ FEATURE MATRIX ═══════════════ -->
+    <section class="reveal" style="padding-top: 5rem;">
+        <span class="section-tag">Feature Matrix</span>
+        <h2 class="section-title">Capability-by-capability comparison.</h2>
+        <p class="section-subtitle">19 categories. Zero spin. Check for yourself.</p>
+
+        <div class="matrix-wrap sharp-edge">
+            <table class="matrix-table">
+                <thead>
+                    <tr>
+                        <th>Capability</th>
+                        <th class="lux-col">Lux Coder</th>
+                        <th>Claude Code</th>
+                        <th>Antigravity</th>
+                        <th>OpenAI Codex</th>
+                        <th>Opencode</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>VS Code visual panel</td>
+                        <td class="lux-col"><span class="check">✔</span> Full suite</td>
+                        <td><span class="cross">✕</span> Terminal</td>
+                        <td><span class="cross">✕</span> Own app</td>
+                        <td><span class="partial">◐</span> IDE plugin</td>
+                        <td><span class="cross">✕</span> Terminal</td>
+                    </tr>
+                    <tr>
+                        <td>Multi-model support (45+)</td>
+                        <td class="lux-col"><span class="check">✔</span> 45+ models</td>
+                        <td><span class="cross">✕</span> Anthropic</td>
+                        <td><span class="cross">✕</span> Gemini</td>
+                        <td><span class="cross">✕</span> OpenAI</td>
+                        <td><span class="partial">◐</span> Configurable</td>
+                    </tr>
+                    <tr>
+                        <td>Bring Your Own Keys</td>
+                        <td class="lux-col"><span class="check">✔</span></td>
+                        <td><span class="cross">✕</span></td>
+                        <td><span class="cross">✕</span></td>
+                        <td><span class="cross">✕</span></td>
+                        <td><span class="check">✔</span></td>
+                    </tr>
+                    <tr>
+                        <td>Auto key failover</td>
+                        <td class="lux-col"><span class="check">✔</span> Automatic</td>
+                        <td><span class="cross">✕</span></td>
+                        <td><span class="cross">✕</span></td>
+                        <td><span class="cross">✕</span></td>
+                        <td><span class="cross">✕</span></td>
+                    </tr>
+                    <tr>
+                        <td>Saved session memory</td>
+                        <td class="lux-col"><span class="check">✔</span> Full history</td>
+                        <td><span class="partial">◐</span> Per-session</td>
+                        <td><span class="partial">◐</span> Per-session</td>
+                        <td><span class="partial">◐</span> Per-thread</td>
+                        <td><span class="cross">✕</span></td>
+                    </tr>
+                    <tr>
+                        <td>Local memory wiki</td>
+                        <td class="lux-col"><span class="check">✔</span> Markdown KB</td>
+                        <td><span class="cross">✕</span></td>
+                        <td><span class="cross">✕</span></td>
+                        <td><span class="cross">✕</span></td>
+                        <td><span class="cross">✕</span></td>
+                    </tr>
+                    <tr>
+                        <td>Branded PDF exports</td>
+                        <td class="lux-col"><span class="check">✔</span> Dark theme</td>
+                        <td><span class="cross">✕</span></td>
+                        <td><span class="cross">✕</span></td>
+                        <td><span class="cross">✕</span></td>
+                        <td><span class="cross">✕</span></td>
+                    </tr>
+                    <tr>
+                        <td>Specialist sub-agents</td>
+                        <td class="lux-col"><span class="check">✔</span> 16 agents</td>
+                        <td><span class="cross">✕</span></td>
+                        <td><span class="partial">◐</span> Subagents</td>
+                        <td><span class="cross">✕</span></td>
+                        <td><span class="cross">✕</span></td>
+                    </tr>
+                    <tr>
+                        <td>Lux Agent integration</td>
+                        <td class="lux-col"><span class="check">✔</span> Native</td>
+                        <td><span class="cross">✕</span></td>
+                        <td><span class="cross">✕</span></td>
+                        <td><span class="cross">✕</span></td>
+                        <td><span class="cross">✕</span></td>
+                    </tr>
+                    <tr>
+                        <td>Parallel build sessions</td>
+                        <td class="lux-col"><span class="check">✔</span></td>
+                        <td><span class="partial">◐</span> Multi-tab</td>
+                        <td><span class="check">✔</span></td>
+                        <td><span class="partial">◐</span> Threads</td>
+                        <td><span class="cross">✕</span></td>
+                    </tr>
+                    <tr>
+                        <td>Diff review panels</td>
+                        <td class="lux-col"><span class="check">✔</span> Interactive</td>
+                        <td><span class="partial">◐</span> Terminal</td>
+                        <td><span class="check">✔</span></td>
+                        <td><span class="partial">◐</span></td>
+                        <td><span class="cross">✕</span></td>
+                    </tr>
+                    <tr>
+                        <td>MCP tool support</td>
+                        <td class="lux-col"><span class="check">✔</span></td>
+                        <td><span class="check">✔</span></td>
+                        <td><span class="check">✔</span></td>
+                        <td><span class="partial">◐</span></td>
+                        <td><span class="check">✔</span></td>
+                    </tr>
+                    <tr>
+                        <td>Built-in skills library</td>
+                        <td class="lux-col"><span class="check">✔</span> 36+ skills</td>
+                        <td><span class="cross">✕</span></td>
+                        <td><span class="partial">◐</span></td>
+                        <td><span class="cross">✕</span></td>
+                        <td><span class="cross">✕</span></td>
+                    </tr>
+                    <tr>
+                        <td>Voice-to-code (Mic)</td>
+                        <td class="lux-col"><span class="check">✔</span></td>
+                        <td><span class="cross">✕</span></td>
+                        <td><span class="cross">✕</span></td>
+                        <td><span class="cross">✕</span></td>
+                        <td><span class="cross">✕</span></td>
+                    </tr>
+                    <tr>
+                        <td>Browser integration</td>
+                        <td class="lux-col"><span class="check">✔</span></td>
+                        <td><span class="cross">✕</span></td>
+                        <td><span class="check">✔</span></td>
+                        <td><span class="cross">✕</span></td>
+                        <td><span class="cross">✕</span></td>
+                    </tr>
+                    <tr>
+                        <td>Local project management</td>
+                        <td class="lux-col"><span class="check">✔</span></td>
+                        <td><span class="cross">✕</span></td>
+                        <td><span class="partial">◐</span></td>
+                        <td><span class="partial">◐</span> Worktrees</td>
+                        <td><span class="cross">✕</span></td>
+                    </tr>
+                    <tr>
+                        <td>Client delivery templates</td>
+                        <td class="lux-col"><span class="check">✔</span></td>
+                        <td><span class="cross">✕</span></td>
+                        <td><span class="cross">✕</span></td>
+                        <td><span class="cross">✕</span></td>
+                        <td><span class="cross">✕</span></td>
+                    </tr>
+                    <tr>
+                        <td>Hardware USB connector</td>
+                        <td class="lux-col"><span class="check">✔</span> Lux Agent</td>
+                        <td><span class="cross">✕</span></td>
+                        <td><span class="cross">✕</span></td>
+                        <td><span class="cross">✕</span></td>
+                        <td><span class="cross">✕</span></td>
+                    </tr>
+                    <tr>
+                        <td>Pricing model</td>
+                        <td class="lux-col">License + BYOK</td>
+                        <td>Subscription</td>
+                        <td>Seat + API</td>
+                        <td>Plan + Credits</td>
+                        <td>Free + BYOK</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- ═══════════════ PRICING COMPARISON ═══════════════ -->
+    <section class="reveal" style="padding-top: 5rem;">
+        <span class="section-tag" style="color: var(--accent-green); background: rgba(0, 230, 118, 0.05); border-color: rgba(0, 230, 118, 0.12);">Cost Comparison</span>
+        <h2 class="section-title">Real-world monthly spend.</h2>
+        <p class="section-subtitle">Your software license should be separate from your AI usage. With Lux Coder, you bring your own keys and control provider costs directly.</p>
+
+        <div class="price-grid">
+            <!-- Claude Code -->
+            <div class="price-card sharp-edge">
+                <h4 style="color: #E57373;">Claude Code</h4>
+                <div class="price-value" style="color: #E57373;">$20–$200</div>
+                <div class="price-note">Pro ($20/mo) or Max ($200/mo)<br>Anthropic models only<br>Subscription model</div>
+                <span class="price-lock" style="color: #E57373; background: rgba(229, 115, 115, 0.06); border: 1px solid rgba(229, 115, 115, 0.12);">Single Provider</span>
+            </div>
+
+            <!-- Antigravity -->
+            <div class="price-card sharp-edge">
+                <h4 style="color: #FFD54F;">Antigravity</h4>
+                <div class="price-value" style="color: #FFD54F;">$14–$25+</div>
+                <div class="price-note">Google Workspace seat pricing<br>+ Gemini API usage costs<br>Google ecosystem only</div>
+                <span class="price-lock" style="color: #FFD54F; background: rgba(255, 213, 79, 0.06); border: 1px solid rgba(255, 213, 79, 0.12);">Single Provider</span>
+            </div>
+
+            <!-- OpenAI Codex -->
+            <div class="price-card sharp-edge">
+                <h4 style="color: #64B5F6;">OpenAI Codex</h4>
+                <div class="price-value" style="color: #64B5F6;">$0–$200+</div>
+                <div class="price-note">Included in ChatGPT plans<br>Usage limits vary by tier<br>Token/credit-based at scale</div>
+                <span class="price-lock" style="color: #64B5F6; background: rgba(100, 181, 246, 0.06); border: 1px solid rgba(100, 181, 246, 0.12);">Single Provider</span>
+            </div>
+
+            <!-- Lux Coder -->
+            <div class="price-card lux-price sharp-edge">
+                <h4 style="color: var(--accent-cyan);">Lux Coder</h4>
+                <div class="price-value" style="color: var(--accent-cyan);">$29–$149</div>
+                <div class="price-note">Software license only<br>+ YOUR OWN API keys<br>Any provider, you control costs</div>
+                <span class="price-lock" style="color: var(--accent-cyan); background: rgba(0, 229, 255, 0.06); border: 1px solid rgba(0, 229, 255, 0.15);">Multi-Provider · BYOK</span>
+            </div>
+        </div>
+
+        <div style="margin-top: 2.5rem; background: rgba(0, 229, 255, 0.02); border: 1px solid rgba(0, 229, 255, 0.1); padding: 1.75rem; text-align: center;">
+            <p style="font-size: 0.95rem; color: #fff; font-weight: 600; margin-bottom: 0.5rem;">💡 The Lux Coder Difference</p>
+            <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.7; max-width: 600px; margin: 0 auto;">
+                With Lux Coder, your software license is separate from your AI usage. You bring your own keys from OpenRouter, OpenAI, Anthropic, Google, Groq, NVIDIA — anyone. You see your costs. You control your spend. No surprises.
+            </p>
+        </div>
+    </section>
+
+    <!-- ═══════════════ WHY LUX CODER WINS ═══════════════ -->
+    <section class="reveal" style="padding-top: 5rem;">
+        <span class="section-tag">The Verdict</span>
+        <h2 class="section-title">Why Lux Coder wins for builders.</h2>
+        <p class="section-subtitle">Six reasons developers, founders, and agencies choose Lux Coder as their daily driver.</p>
+
+        <div class="wins-grid">
+            <div class="win-item sharp-edge">
+                <div class="win-icon">🔀</div>
+                <h4>Model Freedom</h4>
+                <p>Use 45+ models from any provider. Switch between Claude, GPT, Gemini, Qwen, Llama, and more — all from one interface.</p>
+            </div>
+            <div class="win-item sharp-edge">
+                <div class="win-icon">🔓</div>
+                <h4>Zero Lock-in</h4>
+                <p>BYOK means you own your AI spend. No subscription traps. No usage caps you can't control. Your keys, your budget.</p>
+            </div>
+            <div class="win-item sharp-edge">
+                <div class="win-icon">🧠</div>
+                <h4>Local Memory</h4>
+                <p>Your project context stays on your machine. Architecture rules, API docs, client notes — always available, never uploaded.</p>
+            </div>
+            <div class="win-item sharp-edge">
+                <div class="win-icon">📄</div>
+                <h4>Proof of Work</h4>
+                <p>Export branded PDF reports for clients. Dark theme preserved. Professional delivery templates built in. Show what you built.</p>
+            </div>
+            <div class="win-item sharp-edge">
+                <div class="win-icon">🤖</div>
+                <h4>Agent Army</h4>
+                <p>16 specialist coding agents — frontend, backend, security, DevOps, testing, database, architecture, and more. Deploy the right expert for every task.</p>
+            </div>
+            <div class="win-item sharp-edge">
+                <div class="win-icon">🔗</div>
+                <h4>Connected Ecosystem</h4>
+                <p>Lux Agent USB for hardware connectivity. Success Packs for vertical solutions. Partners and affiliate programs for growth.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════ VISUAL PROOF GALLERY ═══════════════ -->
+    <section class="reveal" style="padding: 4rem 1.5rem; text-align: center;">
+        <span class="section-tag" style="color: var(--accent-cyan); background: rgba(0, 229, 255, 0.05); border-color: rgba(0, 229, 255, 0.15);">Visual Intel</span>
+        <h2 class="section-title" style="font-size: 2.2rem; margin-bottom: 0.5rem;">See it all at a glance.</h2>
+        <p class="section-subtitle" style="max-width: 500px; margin: 0 auto 2.5rem;">Professional infographics breaking down exactly why Lux Coder leads the market.</p>
+
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; max-width: 1200px; margin: 0 auto;">
+            <div class="sharp-edge" style="border: 1px solid rgba(0, 229, 255, 0.12); border-radius: 2px; overflow: hidden; transition: transform 0.3s, box-shadow 0.3s;">
+                <img src="infographic-features-comparison.png" alt="Lux Coder — Full features comparison and capabilities matrix" style="width: 100%; display: block;">
+                <p style="padding: 0.65rem 1rem; font-size: 0.75rem; color: var(--text-secondary); font-family: var(--font-mono); background: var(--bg-card); text-align: left;">FEATURES & COMPARISON MATRIX</p>
+            </div>
+            <div class="sharp-edge" style="border: 1px solid rgba(0, 229, 255, 0.12); border-radius: 2px; overflow: hidden; transition: transform 0.3s, box-shadow 0.3s;">
+                <img src="infographic-why-lux-wins.png" alt="Why Lux Coder Wins — Awards and feature breakdown" style="width: 100%; display: block;">
+                <p style="padding: 0.65rem 1rem; font-size: 0.75rem; color: var(--text-secondary); font-family: var(--font-mono); background: var(--bg-card); text-align: left;">WHY LUX CODER WINS</p>
+            </div>
+            <div class="sharp-edge" style="border: 1px solid rgba(0, 229, 255, 0.12); border-radius: 2px; overflow: hidden; transition: transform 0.3s, box-shadow 0.3s;">
+                <img src="infographic-cost-value.png" alt="Lux Coder Cost + Value — Pricing breakdown" style="width: 100%; display: block;">
+                <p style="padding: 0.65rem 1rem; font-size: 0.75rem; color: var(--text-secondary); font-family: var(--font-mono); background: var(--bg-card); text-align: left;">COST + VALUE ANALYSIS</p>
+            </div>
+        </div>
+
+        <!-- Full-width robot banner -->
+        <div class="sharp-edge" style="margin-top: 2rem; max-width: 1200px; margin-left: auto; margin-right: auto; border: 1px solid rgba(0, 229, 255, 0.15); border-radius: 2px; overflow: hidden; box-shadow: 0 0 40px rgba(0, 229, 255, 0.06);">
+            <img src="infographic-robot-banner.png" alt="Lux Coder — Code Faster, Build Smarter, Ship Everything" style="width: 100%; display: block;">
+        </div>
+    </section>
+
+    <!-- ═══════════════ CTA ═══════════════ -->
+    <section class="reveal" style="padding-top: 5rem; padding-bottom: 5rem; text-align: center;">
+        <h2 class="section-title" style="max-width: 600px; margin: 0 auto 1rem;">Stop renting someone else's AI workflow.</h2>
+        <p class="section-subtitle" style="max-width: 520px; margin: 0 auto 2rem;">Own your coding command center. Choose your models. Keep your memory. Export your proof.</p>
+        <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+            <a href="index.html#pricing" class="btn btn-primary sharp-edge" style="padding: 0.85rem 2.25rem; font-size: 0.9rem; text-decoration: none;">Start with Lux Coder Pro →</a>
+            <a href="features.html" class="btn btn-secondary sharp-edge" style="padding: 0.85rem 2.25rem; font-size: 0.9rem; text-decoration: none;">Explore Features</a>
+        </div>
+        <p style="font-size: 0.78rem; color: var(--text-muted); margin-top: 1.5rem;">Part of the Lux Automaton ecosystem · Developed under sovereignty guidelines</p>
+    </section>
+
+    <!-- ═══════════════ FOOTER ═══════════════ -->
+    <footer>
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <img src="lux-coder-logo.jpeg" alt="Lux Coder" class="sharp-edge" style="border-radius: 4px;">
+                        <span style="background: linear-gradient(135deg, #fff 40%, var(--accent-cyan)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Lux Coder</span>
+                    </div>
+                    <p>Orchestrate the best AI models from one branded VS Code command center. Zero vendor lock-in.</p>
+                </div>
+                <div class="footer-column">
+                    <h4>Software Suite</h4>
+                    <ul>
+                        <li><a href="features.html">Features Catalog</a></li>
+                        <li><a href="comparison.html">Compare Systems</a></li>
+                        <li><a href="index.html#pricing">Subscription Pricing</a></li>
+                        <li><a href="license.html">License Lookups</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Ecosystem Nodes</h4>
+                    <ul>
+                        <li><a href="usb.html">Lux Agent USB</a></li>
+                        <li><a href="packs.html">Success Packs</a></li>
+                        <li><a href="partners.html">Partners Program</a></li>
+                        <li><a href="affiliate.html">Affiliate Rewards</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="https://luxautomaton-ux.github.io/lux-agent-website/" target="_blank">Lux Agent Web</a></li>
+                        <li><a href="#">System Docs</a></li>
+                        <li><a href="#">API Reference</a></li>
+                        <li><a href="#">Developer Support</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 Lux Automaton. All rights reserved. Developed under sovereignty guidelines.</p>
+                <p>Build faster. Run smarter. Own your AI system.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

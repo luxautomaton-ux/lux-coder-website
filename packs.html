@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Success Packs | Business Playbooks for Lux Agent</title>
+    <meta name="description" content="Browse Success Packs — pre-coded business playbooks, CRM workflows, and LANA instructions built to help you run your business offline.">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/jpeg" href="lux-coder-logo.jpeg">
+</head>
+<body>
+
+    <!-- ═══════════════════════════════════ HEADER ═══════════════════════════════════ -->
+    <header id="main-header">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <img src="lux-coder-logo.jpeg" alt="Lux Automaton Logo">
+                <span>Lux Automaton</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html#features">Features</a></li>
+                <li><a href="index.html#comparison">Comparison</a></li>
+                <li><a href="index.html#pricing">Pricing</a></li>
+                <li><a href="usb.html">Lux Agent</a></li>
+                <li><a href="license.html">License Lookup</a></li>
+                <li><a href="affiliate.html">Affiliate</a></li>
+            </ul>
+            <button class="nav-cta" onclick="document.getElementById('plans').scrollIntoView({behavior: 'smooth'})">Get System</button>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- ═══════════════════════════════════ HERO SECTION ═══════════════════════════════════ -->
+    <section class="hero" style="min-height: auto; padding-top: 11rem; padding-bottom: 5rem; background: linear-gradient(to right, rgba(6, 8, 13, 0.97) 0%, rgba(6, 8, 13, 0.88) 30%, rgba(6, 8, 13, 0.5) 55%, rgba(6, 8, 13, 0.2) 75%, rgba(6, 8, 13, 0.15) 100%), linear-gradient(to bottom, rgba(6, 8, 13, 0.7) 0%, transparent 25%, transparent 75%, rgba(6, 8, 13, 0.95) 100%), url('hero-bg.png') no-repeat center center / cover;">
+        <div class="hero-content">
+            <div class="hero-badge badge-orange">
+                <span class="pulse-dot" style="background: var(--accent-orange);"></span>
+                Pre-Coded Playbook Add-ons
+            </div>
+            <h1 style="line-height: 1.15;">
+                Install Business Recipes<br>
+                Directly Into Your<br>
+                <span class="gradient-text" style="background: linear-gradient(135deg, var(--accent-orange), var(--accent-gold)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">LANA Virtual Assistant.</span>
+            </h1>
+            <p>
+                Stop writing prompts from scratch. Success Packs are plug-and-play workflows, checklists, and templates that tell Lux Agent exactly how to handle your business operations.
+            </p>
+            <div class="hero-ctas">
+                <button class="btn btn-orange" onclick="document.getElementById('plans').scrollIntoView({behavior: 'smooth'})">
+                    Browse Playbooks
+                </button>
+                <button class="btn btn-secondary" onclick="document.getElementById('features-detail').scrollIntoView({behavior: 'smooth'})">
+                    What's in a Pack?
+                </button>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <!-- Background image serves as visual -->
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════ CORE POSITIONING BAR ═══════════════════════════════════ -->
+    <div class="brand-bar" style="background: rgba(255, 145, 0, 0.02); border-color: rgba(255, 145, 0, 0.15);">
+        <p class="tagline" style="color: var(--accent-orange);">Operational templates &nbsp;|&nbsp; CRM workflows &nbsp;|&nbsp; Custom industry SOPs &nbsp;|&nbsp; Instant execution</p>
+    </div>
+
+    <!-- ═══════════════════════════════════ FEATURES DETAILS ═══════════════════════════════════ -->
+    <section id="features-detail" class="reveal">
+        <span class="section-tag" style="color: var(--accent-orange); background: rgba(255, 145, 0, 0.05); border-color: rgba(255, 145, 0, 0.15);">Playbook Anatomy</span>
+        <h2 class="section-title">What is a Success Pack?</h2>
+        <p class="section-subtitle">Every Success Pack contains structured code, prompts, and database schemas configured for specific business operations.</p>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem;">
+            <div class="feature-card glow-orange">
+                <div class="card-icon" style="background: rgba(255, 145, 0, 0.05); border-color: rgba(255, 145, 0, 0.15); color: var(--accent-orange);">📅</div>
+                <h3>Daily & Weekly Checklists</h3>
+                <p style="font-size: 0.85rem; color: var(--text-secondary);">
+                    Step-by-step guides compiled into your dashboard. LANA prompts you to review pipeline stages, check lead contacts, and run structured weekly metrics analysis.
+                </p>
+            </div>
+            <div class="feature-card glow-orange">
+                <div class="card-icon" style="background: rgba(255, 145, 0, 0.05); border-color: rgba(255, 145, 0, 0.15); color: var(--accent-orange);">📊</div>
+                <h3>CRM Schema & Pipelines</h3>
+                <p style="font-size: 0.85rem; color: var(--text-secondary);">
+                    Pre-configured database layouts, custom stages, and contact categories mapped directly to your local offline CRM dashboard. No database programming needed.
+                </p>
+            </div>
+            <div class="feature-card glow-orange">
+                <div class="card-icon" style="background: rgba(255, 145, 0, 0.05); border-color: rgba(255, 145, 0, 0.15); color: var(--accent-orange);">✉️</div>
+                <h3>Sales Outreach Templates</h3>
+                <p style="font-size: 0.85rem; color: var(--text-secondary);">
+                    High-converting copy scripts, follow-up messages, proposal templates, and prompts customized for your target client profile and business niche.
+                </p>
+            </div>
+            <div class="feature-card glow-orange">
+                <div class="card-icon" style="background: rgba(255, 145, 0, 0.05); border-color: rgba(255, 145, 0, 0.15); color: var(--accent-orange);">⚙️</div>
+                <h3>LANA Instructions & Rules</h3>
+                <p style="font-size: 0.85rem; color: var(--text-secondary);">
+                    Specific system instructions and memory filters (`~/.lux/wiki/`) that direct LANA's reasoning, tone, response formats, and operations.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════ ACCORDION OF AVAILABLE PACKS ═══════════════════════════════════ -->
+    <section class="section-divider reveal">
+        <span class="section-tag" style="color: var(--accent-orange); background: rgba(255, 145, 0, 0.05); border-color: rgba(255, 145, 0, 0.15);">Industry Specific</span>
+        <h2 class="section-title">Browse Industry Playbooks</h2>
+        <p class="section-subtitle">Select and configure the exact recipes built for your business sector.</p>
+
+        <div class="skills-grid">
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span>🏢 Agency & Consulting Pack</span>
+                    <span class="chevron">▼</span>
+                </div>
+                <div class="accordion-content">
+                    Includes lead proposal decks, weekly project review checklists, CRM workflows for tracking milestones, contract templates, and client follow-up sequences.
+                </div>
+            </div>
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span>🩺 Health Practice & Clinic Pack</span>
+                    <span class="chevron">▼</span>
+                </div>
+                <div class="accordion-content">
+                    Includes private intake templates, daily patient log protocols, local scheduling workflows, privacy compliance checklists, and clinical notes templates.
+                </div>
+            </div>
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span>🎵 Music & Creative Studio Pack</span>
+                    <span class="chevron">▼</span>
+                </div>
+                <div class="accordion-content">
+                    Includes session booking pipelines, client asset lists, social media publishing calendars, content script prompts, and media release templates.
+                </div>
+            </div>
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span>🛠️ General Contractor & Trade Pack</span>
+                    <span class="chevron">▼</span>
+                </div>
+                <div class="accordion-content">
+                    Includes local estimate sheets, job pipeline stages, mobile on-site intake logs, material follow-up scripts, and subcontractor checklists.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════ PLANS ═══════════════════════════════════ -->
+    <section id="plans" class="section-divider reveal" style="text-align: center;">
+        <span class="section-tag" style="color: var(--accent-orange); background: rgba(255, 145, 0, 0.05); border-color: rgba(255, 145, 0, 0.15);">Pricing Options</span>
+        <h2 class="section-title">Playbook Success Packs</h2>
+        <p class="section-subtitle" style="margin-left: auto; margin-right: auto;">Unlock full operational recipes. Pre-coded configurations ready to install.</p>
+
+        <div class="pricing-grid">
+            <!-- Starter Pack -->
+            <div class="pricing-card glow-orange">
+                <h3>Starter Pack</h3>
+                <p class="plan-desc">Essential business playbooks</p>
+                <div class="pricing-price" style="color: var(--accent-orange);">$99 <span>/ pack</span></div>
+                <ul class="pricing-features">
+                    <li><span class="check" style="color: var(--accent-orange);">✓</span> Basic role setup prompts</li>
+                    <li><span class="check" style="color: var(--accent-orange);">✓</span> Daily task checklists</li>
+                    <li><span class="check" style="color: var(--accent-orange);">✓</span> Essential CRM workflows</li>
+                    <li><span class="check" style="color: var(--accent-orange);">✓</span> Basic email/prompt templates</li>
+                    <li><span class="check" style="color: var(--accent-orange);">✓</span> Quick-start integration guide</li>
+                </ul>
+                <button class="btn btn-orange btn-pricing-cta" data-plan="Starter Success Pack" data-price-key="pack_starter" style="width: 100%; margin-top: auto;">Buy Starter Pack</button>
+            </div>
+
+            <!-- Pro Industry Pack -->
+            <div class="pricing-card popular" style="border-color: var(--accent-orange); box-shadow: 0 0 0 1px var(--accent-orange), var(--shadow-glow-orange); background: linear-gradient(180deg, rgba(255, 145, 0, 0.03) 0%, var(--bg-card) 40%);">
+                <div style="position: absolute; top: 18px; right: -32px; background: linear-gradient(135deg, var(--accent-orange), var(--accent-gold)); color: #06080d; font-size: 0.65rem; font-weight: 800; padding: 0.3rem 2.5rem; transform: rotate(45deg); letter-spacing: 0.08em;">POPULAR</div>
+                <h3>Pro Industry Pack</h3>
+                <p class="plan-desc">For specialized business sectors</p>
+                <div class="pricing-price" style="color: var(--accent-orange);">$199 <span>/ pack</span></div>
+                <ul class="pricing-features">
+                    <li><span class="check" style="color: var(--accent-orange);">✓</span> Specialized industry workflows</li>
+                    <li><span class="check" style="color: var(--accent-orange);">✓</span> Weekly reviews & KPI checklists</li>
+                    <li><span class="check" style="color: var(--accent-orange);">✓</span> Advanced CRM triggers & workflows</li>
+                    <li><span class="check" style="color: var(--accent-orange);">✓</span> Dynamic sales email sequences</li>
+                    <li><span class="check" style="color: var(--accent-orange);">✓</span> custom alert configurations</li>
+                    <li><span class="check" style="color: var(--accent-orange);">✓</span> Branded PDF guide document</li>
+                </ul>
+                <button class="btn btn-orange btn-pricing-cta" data-plan="Pro Industry Success Pack" data-price-key="pack_pro" style="width: 100%; margin-top: auto;">Buy Pro Pack</button>
+            </div>
+
+            <!-- Custom Success Pack -->
+            <div class="pricing-card glow-orange">
+                <h3>Custom Success Pack</h3>
+                <p class="plan-desc">Bespoke playbooks built for you</p>
+                <div class="pricing-price" style="color: var(--accent-orange);">$399 <span>/ pack</span></div>
+                <ul class="pricing-features">
+                    <li><span class="check" style="color: var(--accent-orange);">✓</span> Tailored custom goals & prompts</li>
+                    <li><span class="check" style="color: var(--accent-orange);">✓</span> Hand-crafted daily task flows</li>
+                    <li><span class="check" style="color: var(--accent-orange);">✓</span> Bespoke CRM reminders & hooks</li>
+                    <li><span class="check" style="color: var(--accent-orange);">✓</span> Operations SOP manual integration</li>
+                    <li><span class="check" style="color: var(--accent-orange);">✓</span> Custom LANA instructions</li>
+                    <li><span class="check" style="color: var(--accent-orange);">✓</span> Premium branded PDF guide</li>
+                </ul>
+                <button class="btn btn-orange btn-pricing-cta" data-plan="Custom Success Pack" data-price-key="pack_custom" style="width: 100%; margin-top: auto;">Order Custom Pack</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════ FOOTER ═══════════════════════════════════ -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <img src="lux-coder-logo.jpeg" alt="Lux Automaton">
+                        <span style="background: linear-gradient(135deg, #fff 40%, var(--accent-cyan)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Lux Automaton</span>
+                    </div>
+                    <p>Building private AI operating systems for sovereign builders, founders, and small businesses.</p>
+                </div>
+                <div class="footer-column">
+                    <h4>Products</h4>
+                    <ul>
+                        <li><a href="coder.html">Lux Coder</a></li>
+                        <li><a href="usb.html">Lux Agent USB</a></li>
+                        <li><a href="packs.html">Success Packs</a></li>
+                        <li><a href="pricing.html">Pricing Structure</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Ecosystem</h4>
+                    <ul>
+                        <li><a href="partners.html">Partners Program</a></li>
+                        <li><a href="affiliate.html">Affiliate Rewards</a></li>
+                        <li><a href="license.html">License Activation</a></li>
+                        <li><a href="pricing.html#custom-setup">Custom Setup</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="https://luxautomaton-ux.github.io/lux-agent-website/" target="_blank">Lux Agent Web</a></li>
+                        <li><a href="#">System Docs</a></li>
+                        <li><a href="#">API Reference</a></li>
+                        <li><a href="#">Support Center</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 Lux Automaton. All rights reserved.</p>
+                <p>Build faster. Run smarter. Own your AI system.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

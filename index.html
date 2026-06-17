@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lux Coder | Premium AI Coding Suite for VS Code</title>
+    <meta name="description" content="Lux Coder is a premium AI coding command center inside VS Code with multi-model support, saved sessions, memory wiki, key failover, specialist agents, diff review, branded exports, and Lux Agent integration.">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/jpeg" href="lux-coder-logo.jpeg">
+    <!-- Open Graph -->
+    <meta property="og:title" content="Lux Coder | Premium AI Coding Suite for VS Code">
+    <meta property="og:description" content="Build smarter and code faster from one private, multi-model command center inside VS Code. Bring your own keys, keep project memory, and export branded reports.">
+    <meta property="og:image" content="infographic-robot-banner.png">
+    <meta property="og:type" content="website">
+    <style>
+        /* Sharp tech aesthetic overrides */
+        .sharp-edge {
+            border-radius: 2px !important;
+        }
+        .problem-card {
+            background: rgba(13, 17, 28, 0.45);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            padding: 1.50rem;
+            transition: var(--transition);
+        }
+        .problem-card.competitor:hover {
+            border-color: rgba(255, 61, 0, 0.25);
+            box-shadow: 0 0 20px rgba(255, 61, 0, 0.03);
+        }
+        .problem-card.lux-solution {
+            border: 1px solid var(--accent-cyan);
+            background: rgba(0, 229, 255, 0.02);
+            box-shadow: var(--shadow-glow);
+        }
+        .problem-card.lux-solution:hover {
+            box-shadow: 0 0 50px rgba(0, 229, 255, 0.15);
+        }
+        .steps-container {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 1rem;
+            position: relative;
+            margin-top: 2rem;
+        }
+        @media (max-width: 1024px) {
+            .steps-container {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+        }
+        .step-node {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            padding: 1.25rem;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+        .step-number {
+            font-family: var(--font-mono);
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--accent-cyan);
+            margin-bottom: 0.5rem;
+        }
+        .use-case-badge {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border-color);
+            padding: 0.85rem 1.25rem;
+            font-size: 0.9rem;
+            transition: var(--transition-fast);
+            color: var(--text-secondary);
+        }
+        .use-case-badge:hover {
+            border-color: var(--accent-cyan);
+            color: #fff;
+            background: rgba(0, 229, 255, 0.03);
+            transform: translateY(-2px);
+        }
+        /* Highlight Lux Coder column in comparison table */
+        .lux-col-highlight {
+            background: rgba(0, 229, 255, 0.03) !important;
+            border-left: 1px solid rgba(0, 229, 255, 0.15) !important;
+            border-right: 1px solid rgba(0, 229, 255, 0.15) !important;
+        }
+        tr:hover .lux-col-highlight {
+            background: rgba(0, 229, 255, 0.05) !important;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ═══════════════════════════════════ HEADER ═══════════════════════════════════ -->
+    <header id="main-header">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <img src="lux-coder-logo.jpeg" alt="Lux Coder Logo" class="sharp-edge" style="border-radius: 4px;">
+                <span>Lux Coder</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="features.html">Features</a></li>
+                <li><a href="comparison.html">Comparison</a></li>
+                <li><a href="download.html">Download</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="#podcast">Podcast</a></li>
+                <li><a href="#agent-integration">Lux Agent</a></li>
+                <li><a href="license.html">License Lookup</a></li>
+                <li><a href="affiliate.html">Affiliate</a></li>
+            </ul>
+            <button class="nav-cta sharp-edge" onclick="document.getElementById('pricing').scrollIntoView({behavior: 'smooth'})">Get Coder</button>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- ═══════════════════════════════════ HERO SECTION (1) ═══════════════════════════════════ -->
+    <section class="hero scanline-overlay" style="background: linear-gradient(to right, rgba(6, 8, 13, 0.96) 0%, rgba(6, 8, 13, 0.88) 30%, rgba(6, 8, 13, 0.5) 55%, rgba(6, 8, 13, 0.2) 75%, rgba(6, 8, 13, 0.15) 100%), linear-gradient(to bottom, rgba(6, 8, 13, 0.7) 0%, transparent 25%, transparent 75%, rgba(6, 8, 13, 0.95) 100%), url('lux-coder-banner.png') no-repeat center center / cover;">
+        <div class="hero-content">
+            <div class="hero-badge badge-cyan sharp-edge" style="border-radius: 2px;">
+                <span class="pulse-dot" style="background: var(--accent-cyan);"></span>
+                VS Code Native Suite
+            </div>
+            <h1 style="line-height: 1.12;">
+                Lux Coder<br>
+                <span class="gradient-text" style="background: linear-gradient(135deg, var(--accent-cyan) 0%, var(--accent-blue) 60%, #8A2BE2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">The Premium AI Suite</span><br>
+                for Builders.
+            </h1>
+            <p>
+                Build apps, dashboards, automations, and client systems from one branded AI command center inside VS Code. Use the best models, save your sessions, keep project memory, switch keys automatically, and export client-ready reports without leaving your workspace.
+            </p>
+            <div class="hero-ctas">
+                <button class="btn btn-primary sharp-edge" onclick="document.getElementById('pricing').scrollIntoView({behavior: 'smooth'})">
+                    Start with Lux Coder Pro
+                </button>
+                <button class="btn btn-secondary sharp-edge" onclick="document.getElementById('pricing').scrollIntoView({behavior: 'smooth'})">
+                    See Pricing
+                </button>
+            </div>
+            <div style="font-size: 0.82rem; color: var(--text-muted); margin-bottom: 2rem;">
+                Integrated with Lux Agent. Developed by Lux Automaton.
+            </div>
+            
+            <div class="hero-stats" style="margin-top: 1.5rem; gap: 2rem;">
+                <div class="hero-stat">
+                    <div class="stat-value" style="color: var(--accent-cyan);">45+</div>
+                    <div class="stat-label">AI Models</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="stat-value" style="color: var(--accent-green);">16</div>
+                    <div class="stat-label">Coding Agents</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="stat-value" style="color: #fff;">100%</div>
+                    <div class="stat-label">Local Memory</div>
+                </div>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div class="hero-image-wrapper sharp-edge glow-border" style="border-color: rgba(0, 229, 255, 0.2); box-shadow: 0 0 50px rgba(0, 229, 255, 0.1);">
+                <img src="hero-showcase.png" alt="Lux Coder VS Code interface">
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════ BADGES BAR ═══════════════════════════════════ -->
+    <div class="brand-bar" style="padding: 2.5rem 1.5rem;">
+        <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 1.25rem; font-family: var(--font-mono); font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-secondary);">
+            <span style="color: var(--accent-cyan);">● VS Code Native</span>
+            <span style="color: var(--accent-green);">● BYOK Friendly</span>
+            <span style="color: var(--accent-orange);">● Multi-Model</span>
+            <span style="color: var(--accent-cyan);">● Local Memory</span>
+            <span style="color: var(--accent-green);">● Branded Exports</span>
+            <span style="color: var(--accent-orange);">● Lux Agent Connected</span>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════ INFOGRAPHIC SHOWCASE ═══════════════════════════════════ -->
+    <section class="section-divider reveal" style="text-align: center; padding: 5rem 1.5rem 3rem;">
+        <span class="section-tag" style="color: var(--accent-cyan); background: rgba(0, 229, 255, 0.05); border-color: rgba(0, 229, 255, 0.15);">Visual Overview</span>
+        <h2 class="section-title" style="font-size: 2.4rem; margin-bottom: 0.5rem;">See the full picture.</h2>
+        <p class="section-subtitle" style="max-width: 550px; margin: 0 auto 2.5rem;">Everything you need — model freedom, comparison data, cost savings, and ecosystem integration — in one glance.</p>
+
+        <div class="responsive-split-row" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; max-width: 1200px; margin: 0 auto;">
+            <div class="showcase-image sharp-edge glow-border" style="border-color: rgba(0, 229, 255, 0.15); box-shadow: 0 0 30px rgba(0, 229, 255, 0.08); overflow: hidden; border-radius: 2px;">
+                <img src="infographic-overview.png" alt="Lux Coder Suite — Full product overview infographic" style="width: 100%; display: block; border-radius: 2px;">
+            </div>
+            <div class="showcase-image sharp-edge glow-border" style="border-color: rgba(0, 229, 255, 0.15); box-shadow: 0 0 30px rgba(0, 229, 255, 0.08); overflow: hidden; border-radius: 2px;">
+                <img src="infographic-why-lux-wins.png" alt="Why Lux Coder Wins — Feature matrix and awards" style="width: 100%; display: block; border-radius: 2px;">
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════ APP IN ACTION GALLERY ═══════════════════════════════════ -->
+    <section class="section-divider reveal" style="text-align: center; padding: 3rem 1.5rem 5rem;">
+        <span class="section-tag" style="color: var(--accent-green); background: rgba(0, 230, 118, 0.05); border-color: rgba(0, 230, 118, 0.15);">App in Action</span>
+        <h2 class="section-title" style="font-size: 2.2rem; margin-bottom: 0.5rem;">Real screenshots. Real power.</h2>
+        <p class="section-subtitle" style="max-width: 550px; margin: 0 auto 2.5rem;">See Lux Coder Suite running live — the command center, API settings, session history, and full suite controls.</p>
+
+        <div class="gallery-scroll" style="display: flex; gap: 1.25rem; overflow-x: auto; padding: 0.5rem 0 1rem; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch;">
+            <div class="gallery-item sharp-edge" style="min-width: 520px; scroll-snap-align: start; border: 1px solid rgba(0, 229, 255, 0.12); border-radius: 2px; overflow: hidden; flex-shrink: 0;">
+                <img src="screenshot-suite-2.png" alt="Lux Coder Suite — Command Center with model selector and guided build prompts" style="width: 100%; display: block;">
+                <p class="gallery-caption" style="padding: 0.75rem 1rem; font-size: 0.8rem; color: var(--text-secondary); text-align: left; font-family: var(--font-mono); background: var(--bg-card);">Command Center — Model Selector, Guide Panel & Build Prompts</p>
+            </div>
+            <div class="gallery-item sharp-edge" style="min-width: 520px; scroll-snap-align: start; border: 1px solid rgba(0, 229, 255, 0.12); border-radius: 2px; overflow: hidden; flex-shrink: 0;">
+                <img src="screenshot-suite-1.png" alt="Lux Coder Suite — API Switcher, multi-model setup panel" style="width: 100%; display: block;">
+                <p class="gallery-caption" style="padding: 0.75rem 1rem; font-size: 0.8rem; color: var(--text-secondary); text-align: left; font-family: var(--font-mono); background: var(--bg-card);">API Switcher — Multi-Provider Setup & Dev Status Controls</p>
+            </div>
+            <div class="gallery-item sharp-edge" style="min-width: 520px; scroll-snap-align: start; border: 1px solid rgba(0, 229, 255, 0.12); border-radius: 2px; overflow: hidden; flex-shrink: 0;">
+                <img src="screenshot-suite-3.png" alt="Lux Coder Suite — Skills library and session history" style="width: 100%; display: block;">
+                <p class="gallery-caption" style="padding: 0.75rem 1rem; font-size: 0.8rem; color: var(--text-secondary); text-align: left; font-family: var(--font-mono); background: var(--bg-card);">Skills Library — 36+ Built-in Skills Across Every Discipline</p>
+            </div>
+            <div class="gallery-item sharp-edge" style="min-width: 520px; scroll-snap-align: start; border: 1px solid rgba(0, 229, 255, 0.12); border-radius: 2px; overflow: hidden; flex-shrink: 0;">
+                <img src="screenshot-suite-4.png" alt="Lux Coder Suite — About page and founder message" style="width: 100%; display: block;">
+                <p class="gallery-caption" style="padding: 0.75rem 1rem; font-size: 0.8rem; color: var(--text-secondary); text-align: left; font-family: var(--font-mono); background: var(--bg-card);">About — Founder Message & Suite Vision</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════ PROBLEM SECTION (2) ═══════════════════════════════════ -->
+    <section id="problem" class="reveal">
+        <span class="section-tag" style="color: var(--accent-orange); background: rgba(255, 145, 0, 0.05); border-color: rgba(255, 145, 0, 0.12);">Ecosystem Reality</span>
+        <h2 class="section-title">Most AI coding tools force you into their world.</h2>
+        <p class="section-subtitle">Locked environments restrict your model selections, control protocols, and client deliveries. Lux Coder restores developer agency.</p>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem;">
+            <!-- Claude Code -->
+            <div class="problem-card competitor sharp-edge">
+                <h4 style="font-weight: 700; color: #E57373; font-size: 1.05rem; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
+                    <span>✕</span> Claude Code
+                </h4>
+                <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.6;">Terminal-first and Anthropic-centered. Locks your workflows to a single model provider.</p>
+            </div>
+
+            <!-- Antigravity -->
+            <div class="problem-card competitor sharp-edge">
+                <h4 style="font-weight: 700; color: #FFD54F; font-size: 1.05rem; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
+                    <span>✕</span> Antigravity
+                </h4>
+                <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.6;">Standalone workspace and Google-centered. Tied directly to closed environment tools.</p>
+            </div>
+
+            <!-- Codex -->
+            <div class="problem-card competitor sharp-edge">
+                <h4 style="font-weight: 700; color: #64B5F6; font-size: 1.05rem; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
+                    <span>✕</span> OpenAI Codex
+                </h4>
+                <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.6;">OpenAI-native and tied to OpenAI’s ecosystem credits and limits.</p>
+            </div>
+
+            <!-- Basic Opencode -->
+            <div class="problem-card competitor sharp-edge">
+                <h4 style="font-weight: 700; color: var(--text-muted); font-size: 1.05rem; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
+                    <span>✕</span> Basic Opencode
+                </h4>
+                <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.6;">Powerful foundation, but requires heavy manual configuration, tuning, and lacks polish.</p>
+            </div>
+
+            <!-- Lux Coder -->
+            <div class="problem-card lux-solution sharp-edge">
+                <h4 style="font-weight: 800; color: var(--accent-cyan); font-size: 1.1rem; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
+                    <span>✓</span> Lux Coder
+                </h4>
+                <p style="font-size: 0.85rem; color: var(--text-primary); line-height: 1.6; font-weight: 500;">A branded command center inside VS Code that lets you choose your models, keep memory, manage keys, review diffs, and export proof.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════ MAIN FEATURE GRID (3) ═══════════════════════════════════ -->
+    <section id="features" class="section-divider reveal">
+        <span class="section-tag" style="color: var(--accent-cyan); background: rgba(0, 229, 255, 0.05); border-color: rgba(0, 229, 255, 0.15);">Capabilities</span>
+        <h2 class="section-title">Everything a builder needs in one coding suite.</h2>
+        <p class="section-subtitle">No more jumping between browser windows or single-model plugins. Lux Coder brings visual controls, failover layers, and multi-agent loops directly into your workspace.</p>
+
+        <div class="features-grid">
+            <!-- Feature 1 -->
+            <div class="feature-card glow-cyan sharp-edge">
+                <div class="card-icon" style="color: var(--accent-cyan);">🖥️</div>
+                <h3>VS Code Command Center</h3>
+                <p>Use a visual AI coding workspace without leaving your editor. Trigger tasks, review modifications, and manage sessions side-by-side with your code.</p>
+            </div>
+
+            <!-- Feature 2 -->
+            <div class="feature-card glow-cyan sharp-edge">
+                <div class="card-icon" style="color: var(--accent-cyan);">🌐</div>
+                <h3>Multi-Model Freedom</h3>
+                <p>Use OpenRouter, OpenAI, Anthropic, Gemini, Groq, NVIDIA, and custom endpoints. Switch between models instantly depending on the task's complexity.</p>
+            </div>
+
+            <!-- Feature 3 -->
+            <div class="feature-card glow-cyan sharp-edge">
+                <div class="card-icon" style="color: var(--accent-cyan);">🔑</div>
+                <h3>Auto Key Failover</h3>
+                <p>When one provider API key or account hits rate limits or quota caps, Lux Coder automatically rolls over to your next configured provider, ensuring zero downtime.</p>
+            </div>
+
+            <!-- Feature 4 -->
+            <div class="feature-card glow-cyan sharp-edge">
+                <div class="card-icon" style="color: var(--accent-cyan);">💾</div>
+                <h3>Saved Sessions</h3>
+                <p>Never lose your coding conversations or build context. Retrieve full session history and continue conversations seamlessly across editor restarts.</p>
+            </div>
+
+            <!-- Feature 5 -->
+            <div class="feature-card glow-cyan sharp-edge">
+                <div class="card-icon" style="color: var(--accent-cyan);">📖</div>
+                <h3>Memory Wiki</h3>
+                <p>Keep project knowledge across sessions. Local markdown files serve as knowledge graphs so the AI remembers architecture rules, APIs, and project constraints.</p>
+            </div>
+
+            <!-- Feature 6 -->
+            <div class="feature-card glow-cyan sharp-edge">
+                <div class="card-icon" style="color: var(--accent-cyan);">🤖</div>
+                <h3>16 Specialist Agents</h3>
+                <p>Deploy specialized agents for frontend, backend, security auditing, DevOps automation, testing coverage, database schema, architecture design, and more.</p>
+            </div>
+
+            <!-- Feature 7 -->
+            <div class="feature-card glow-cyan sharp-edge">
+                <div class="card-icon" style="color: var(--accent-cyan);">⚖️</div>
+                <h3>Diff Review</h3>
+                <p>Inspect AI-generated file changes before accepting them. Compare code in an interactive git-style visual split panel inside VS Code.</p>
+            </div>
+
+            <!-- Feature 8 -->
+            <div class="feature-card glow-cyan sharp-edge">
+                <div class="card-icon" style="color: var(--accent-cyan);">⇄</div>
+                <h3>Parallel Sessions</h3>
+                <p>Run multiple build, research, or debugging sessions side by side. Specialist sub-agents report back in the background while you focus on core logic.</p>
+            </div>
+
+            <!-- Feature 9 -->
+            <div class="feature-card glow-cyan sharp-edge">
+                <div class="card-icon" style="color: var(--accent-cyan);">📑</div>
+                <h3>Branded Exports</h3>
+                <p>Export conversation logs, benchmark outputs, and workspace views with clean Lux branding for client proof-of-work, invoice backings, and reporting.</p>
+            </div>
+
+            <!-- Feature 10 -->
+            <div class="feature-card glow-cyan sharp-edge">
+                <div class="card-icon" style="color: var(--accent-cyan);">🔌</div>
+                <h3>Lux Agent Integration</h3>
+                <p>Connect coding outputs, automation tasks, and physical hardware business databases together. Bridge the gap between build code and client CRM pipelines.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════ HOW IT WORKS (4) ═══════════════════════════════════ -->
+    <section id="how-it-works" class="section-divider reveal">
+        <span class="section-tag" style="color: var(--accent-green); background: rgba(0, 230, 118, 0.05); border-color: rgba(0, 230, 118, 0.15);">Workflow</span>
+        <h2 class="section-title">From idea to working software.</h2>
+        <p class="section-subtitle">The native developer loop inside VS Code, automated by specialized background agents.</p>
+
+        <div class="steps-container">
+            <div class="step-node sharp-edge">
+                <div class="step-number">01</div>
+                <h4 style="font-weight: 700; color: #fff; font-size: 0.9rem; margin-bottom: 0.5rem;">Open Workspace</h4>
+                <p style="font-size: 0.78rem; color: var(--text-secondary);">Launch Lux Coder visual side panel inside VS Code.</p>
+            </div>
+            <div class="step-node sharp-edge">
+                <div class="step-number">02</div>
+                <h4 style="font-weight: 700; color: #fff; font-size: 0.9rem; margin-bottom: 0.5rem;">Select Model</h4>
+                <p style="font-size: 0.78rem; color: var(--text-secondary);">Choose your API model or point to custom local weights.</p>
+            </div>
+            <div class="step-node sharp-edge">
+                <div class="step-number">03</div>
+                <h4 style="font-weight: 700; color: #fff; font-size: 0.9rem; margin-bottom: 0.5rem;">Run Agents</h4>
+                <p style="font-size: 0.78rem; color: var(--text-secondary);">Deploy LANA or a specific sub-agent to edit, write, or review.</p>
+            </div>
+            <div class="step-node sharp-edge">
+                <div class="step-number">04</div>
+                <h4 style="font-weight: 700; color: #fff; font-size: 0.9rem; margin-bottom: 0.5rem;">Review Diffs</h4>
+                <p style="font-size: 0.78rem; color: var(--text-secondary);">Examine the changes visually before writing to file.</p>
+            </div>
+            <div class="step-node sharp-edge">
+                <div class="step-number">05</div>
+                <h4 style="font-weight: 700; color: #fff; font-size: 0.9rem; margin-bottom: 0.5rem;">Store Memory</h4>
+                <p style="font-size: 0.78rem; color: var(--text-secondary);">Commit conversational state and context to local wikis.</p>
+            </div>
+            <div class="step-node sharp-edge">
+                <div class="step-number">06</div>
+                <h4 style="font-weight: 700; color: #fff; font-size: 0.9rem; margin-bottom: 0.5rem;">Export Proof</h4>
+                <p style="font-size: 0.78rem; color: var(--text-secondary);">Compile a branded PDF or workspace screenshot summary.</p>
+            </div>
+            <div class="step-node sharp-edge">
+                <div class="step-number">07</div>
+                <h4 style="font-weight: 700; color: #fff; font-size: 0.9rem; margin-bottom: 0.5rem;">Ship Software</h4>
+                <p style="font-size: 0.78rem; color: var(--text-secondary);">Deploy the validated app safely. Task complete.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════ USE CASES (5) ═══════════════════════════════════ -->
+    <section id="use-cases" class="section-divider reveal">
+        <span class="section-tag" style="color: var(--accent-orange); background: rgba(255, 145, 0, 0.05); border-color: rgba(255, 145, 0, 0.15);">Applications</span>
+        <h2 class="section-title">Built for real software work.</h2>
+        <p class="section-subtitle">How developers, founders, and agencies apply the command center daily.</p>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 0.75rem;">
+            <div class="use-case-badge sharp-edge">💻 Build SaaS landing pages</div>
+            <div class="use-case-badge sharp-edge">📊 Create dashboards</div>
+            <div class="use-case-badge sharp-edge">🔒 Build client portals</div>
+            <div class="use-case-badge sharp-edge">🪲 Debug broken apps</div>
+            <div class="use-case-badge sharp-edge">🧹 Refactor codebases</div>
+            <div class="use-case-badge sharp-edge">💳 Add Stripe checkout</div>
+            <div class="use-case-badge sharp-edge">🎯 Build CRM workflows</div>
+            <div class="use-case-badge sharp-edge">📖 Generate documentation</div>
+            <div class="use-case-badge sharp-edge">🛣️ Create API routes</div>
+            <div class="use-case-badge sharp-edge">🚀 Review pull requests</div>
+            <div class="use-case-badge sharp-edge">🤖 Build automations</div>
+            <div class="use-case-badge sharp-edge">📄 Create reports for clients</div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════ LUX AGENT INTEGRATION (6) ═══════════════════════════════════ -->
+    <section id="agent-integration" class="section-divider reveal">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;" class="responsive-split-row">
+            <div class="showcase-text">
+                <span class="section-tag" style="color: var(--accent-green); background: rgba(0, 230, 118, 0.05); border-color: rgba(0, 230, 118, 0.15);">Sovereign Node</span>
+                <h2 class="section-title" style="font-size: 2.2rem; line-height: 1.2;">Connected with Lux Agent.</h2>
+                <p style="color: var(--text-secondary); line-height: 1.75; margin-bottom: 1.5rem;">
+                    Lux Coder connects seamlessly with the wider Lux Agent ecosystem. Ask, plan, build, document, and export in one connected, secure workflow. While Lux Agent guides the business side, CRM logs, and hardware tasks, Lux Coder focuses entirely on building and editing the code inside your editor.
+                </p>
+                <button class="btn btn-green sharp-edge" onclick="window.location.href='usb.html'">
+                    See Lux Agent Integration
+                </button>
+            </div>
+            <div class="showcase-image sharp-edge" style="border-color: rgba(0, 230, 118, 0.12);">
+                <img src="infographic-lux-agent-integration.png" alt="Lux Agent Integration — Connected with Lux Coder and Lux Automaton">
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════ COMPARISON SECTION (7) ═══════════════════════════════════ -->
+    <section id="comparison" class="section-divider reveal">
+        <span class="section-tag" style="color: var(--accent-cyan); background: rgba(0, 229, 255, 0.05); border-color: rgba(0, 229, 255, 0.15);">Control Assessment</span>
+        <h2 class="section-title">Why Lux Coder wins on control.</h2>
+        <p class="section-subtitle">Claude Code locks you into Anthropic. Antigravity leans into Google. Codex leans into OpenAI. Lux Coder lets you orchestrate the best models from one branded VS Code command center.</p>
+
+        <div class="matrix-card active sharp-edge" style="display: block;">
+            <table class="matrix-table">
+                <thead>
+                    <tr>
+                        <th style="width: 40%;">Capabilities</th>
+                        <th class="highlight lux-col-highlight" style="width: 20%; text-align: center;">Lux Coder</th>
+                        <th style="width: 15%; text-align: center;">Claude Code</th>
+                        <th style="width: 15%; text-align: center;">Antigravity</th>
+                        <th style="width: 15%; text-align: center;">Codex / Opencode</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>VS Code visual panel</td>
+                        <td class="yes lux-col-highlight" style="text-align: center;">✓ Yes</td>
+                        <td class="no" style="text-align: center;">✗ Terminal-only</td>
+                        <td class="no" style="text-align: center;">✗ App-only</td>
+                        <td class="no" style="text-align: center;">✗ Basic Plugin</td>
+                    </tr>
+                    <tr>
+                        <td>Multi-model support</td>
+                        <td class="yes lux-col-highlight" style="text-align: center;">✓ Yes (45+)</td>
+                        <td class="no" style="text-align: center;">✗ Anthropic Only</td>
+                        <td class="no" style="text-align: center;">✗ Google Only</td>
+                        <td class="no" style="text-align: center;">✗ OpenAI Only</td>
+                    </tr>
+                    <tr>
+                        <td>BYOK support</td>
+                        <td class="yes lux-col-highlight" style="text-align: center;">✓ Yes</td>
+                        <td class="no" style="text-align: center;">✗ No (Sub)</td>
+                        <td class="no" style="text-align: center;">✗ No (Sub)</td>
+                        <td class="yes" style="text-align: center;">✓ Yes</td>
+                    </tr>
+                    <tr>
+                        <td>Auto key failover</td>
+                        <td class="yes lux-col-highlight" style="text-align: center;">✓ Yes</td>
+                        <td class="no" style="text-align: center;">✗ No</td>
+                        <td class="no" style="text-align: center;">✗ No</td>
+                        <td class="no" style="text-align: center;">✗ No</td>
+                    </tr>
+                    <tr>
+                        <td>Saved session memory</td>
+                        <td class="yes lux-col-highlight" style="text-align: center;">✓ Yes</td>
+                        <td class="no" style="text-align: center;">✗ Limited</td>
+                        <td class="no" style="text-align: center;">✗ Limited</td>
+                        <td class="no" style="text-align: center;">✗ Limited</td>
+                    </tr>
+                    <tr>
+                        <td>Local memory wiki</td>
+                        <td class="yes lux-col-highlight" style="text-align: center;">✓ Yes</td>
+                        <td class="no" style="text-align: center;">✗ No</td>
+                        <td class="no" style="text-align: center;">✗ No</td>
+                        <td class="no" style="text-align: center;">✗ No</td>
+                    </tr>
+                    <tr>
+                        <td>Branded PDF exports</td>
+                        <td class="yes lux-col-highlight" style="text-align: center;">✓ Yes</td>
+                        <td class="no" style="text-align: center;">✗ No</td>
+                        <td class="no" style="text-align: center;">✗ No</td>
+                        <td class="no" style="text-align: center;">✗ No</td>
+                    </tr>
+                    <tr>
+                        <td>Specialist sub-agents</td>
+                        <td class="yes lux-col-highlight" style="text-align: center;">✓ Yes (16)</td>
+                        <td class="no" style="text-align: center;">✗ No</td>
+                        <td class="no" style="text-align: center;">✗ No</td>
+                        <td class="no" style="text-align: center;">✗ No</td>
+                    </tr>
+                    <tr>
+                        <td>Lux Agent integration</td>
+                        <td class="yes lux-col-highlight" style="text-align: center;">✓ Yes</td>
+                        <td class="no" style="text-align: center;">✗ No</td>
+                        <td class="no" style="text-align: center;">✗ No</td>
+                        <td class="no" style="text-align: center;">✗ No</td>
+                    </tr>
+                    <tr>
+                        <td>Low software license</td>
+                        <td class="yes lux-col-highlight" style="text-align: center;">✓ Yes</td>
+                        <td class="no" style="text-align: center;">✗ Lock-in Subscription</td>
+                        <td class="no" style="text-align: center;">✗ High Seat Cost</td>
+                        <td class="no" style="text-align: center;">✗ Token limits</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════ VIDEO SECTION ═══════════════════════════════════ -->
+    <section id="video" class="section-divider reveal" style="text-align: center;">
+        <span class="section-tag" style="color: var(--accent-cyan); background: rgba(0, 229, 255, 0.05); border-color: rgba(0, 229, 255, 0.15);">🎬 Watch</span>
+        <h2 class="section-title">See Lux Coder in action.</h2>
+        <p class="section-subtitle" style="max-width: 560px; margin: 0 auto 2.5rem;">Watch the full walkthrough — from setup to shipping software — and see why builders choose Lux Coder over everything else.</p>
+
+        <div class="video-container sharp-edge" style="max-width: 960px; margin: 0 auto; border: 1px solid rgba(0, 229, 255, 0.15); box-shadow: 0 0 50px rgba(0, 229, 255, 0.06); overflow: hidden; border-radius: 2px;">
+            <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+                <iframe src="https://www.youtube.com/embed/LEdcHrIkzpg" title="Lux Coder Suite — Full Walkthrough" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;"></iframe>
+            </div>
+        </div>
+
+        <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 0.6rem; margin-top: 1.5rem;">
+            <span class="sharp-edge" style="padding: 0.3rem 0.75rem; font-size: 0.7rem; font-family: var(--font-mono); text-transform: uppercase; letter-spacing: 0.06em; background: rgba(0, 229, 255, 0.04); border: 1px solid rgba(0, 229, 255, 0.1); color: var(--accent-cyan);">Full Walkthrough</span>
+            <span class="sharp-edge" style="padding: 0.3rem 0.75rem; font-size: 0.7rem; font-family: var(--font-mono); text-transform: uppercase; letter-spacing: 0.06em; background: rgba(0, 230, 118, 0.04); border: 1px solid rgba(0, 230, 118, 0.1); color: var(--accent-green);">Live Demo</span>
+            <span class="sharp-edge" style="padding: 0.3rem 0.75rem; font-size: 0.7rem; font-family: var(--font-mono); text-transform: uppercase; letter-spacing: 0.06em; background: rgba(41, 121, 255, 0.04); border: 1px solid rgba(41, 121, 255, 0.1); color: var(--accent-blue);">VS Code Suite</span>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════ PODCAST SECTION ═══════════════════════════════════ -->
+    <section id="podcast" class="section-divider reveal">
+        <span class="section-tag" style="color: var(--accent-green); background: rgba(0, 230, 118, 0.05); border-color: rgba(0, 230, 118, 0.12);">🎙️ Listen Now</span>
+        <h2 class="section-title">Own Your AI with Lux Automaton</h2>
+        <p class="section-subtitle">Hear the vision behind Lux Coder — why model freedom matters, how BYOK changes the game, and what's next for builders who refuse to be locked in.</p>
+
+        <div class="responsive-split-row" style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; margin-top: 2.5rem;">
+            <!-- Podcast Cover Art -->
+            <div style="position: relative;">
+                <div class="sharp-edge glow-border" style="overflow: hidden; border: 1px solid rgba(0, 230, 118, 0.2); box-shadow: 0 0 50px rgba(0, 230, 118, 0.08);">
+                    <img src="podcast-cover.png" alt="Own Your AI with Lux Automaton — Podcast" style="width: 100%; display: block; aspect-ratio: 16/10; object-fit: cover;">
+                </div>
+                <div style="position: absolute; top: 1rem; left: 1rem; background: rgba(6, 8, 13, 0.85); backdrop-filter: blur(12px); border: 1px solid rgba(0, 230, 118, 0.2); padding: 0.35rem 0.85rem; font-size: 0.72rem; font-family: var(--font-mono); text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent-green); border-radius: 2px;">
+                    🎙️ Episode 01
+                </div>
+            </div>
+
+            <!-- Podcast Player & Info -->
+            <div>
+                <div style="font-family: var(--font-mono); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent-green); margin-bottom: 0.75rem;">Lux Automaton Podcast</div>
+                <h3 style="font-size: 1.6rem; font-weight: 800; color: #fff; line-height: 1.25; margin-bottom: 1rem;">
+                    Own Your AI<br>
+                    <span style="color: var(--accent-cyan);">with Lux Automaton</span>
+                </h3>
+                <p style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.75; margin-bottom: 1.75rem;">
+                    A deep conversation about why developers deserve model freedom, how Lux Coder was built from scratch inside VS Code, the BYOK philosophy, and the future of branded AI development suites. If you build software — this one's for you.
+                </p>
+
+                <!-- Audio Player -->
+                <div class="sharp-edge" style="background: rgba(13, 17, 28, 0.6); border: 1px solid rgba(0, 230, 118, 0.12); padding: 1.25rem; margin-bottom: 1.5rem;">
+                    <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem;">
+                        <button id="podcast-play-btn" onclick="togglePodcast()" class="sharp-edge" style="width: 44px; height: 44px; background: linear-gradient(135deg, var(--accent-green), var(--accent-cyan)); border: none; color: #06080d; font-size: 1.1rem; cursor: pointer; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: var(--transition-fast);">
+                            ▶
+                        </button>
+                        <div style="flex: 1;">
+                            <div style="font-size: 0.85rem; font-weight: 700; color: #fff; margin-bottom: 0.25rem;">Own Your AI with Lux Automaton</div>
+                            <div style="font-size: 0.72rem; color: var(--text-muted); font-family: var(--font-mono);">
+                                <span id="podcast-current">0:00</span> / <span id="podcast-duration">--:--</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Progress Bar -->
+                    <div id="podcast-progress-bar" onclick="seekPodcast(event)" style="width: 100%; height: 4px; background: rgba(255, 255, 255, 0.06); cursor: pointer; position: relative; border-radius: 2px;">
+                        <div id="podcast-progress" style="width: 0%; height: 100%; background: linear-gradient(to right, var(--accent-green), var(--accent-cyan)); border-radius: 2px; transition: width 0.2s;"></div>
+                    </div>
+                    <audio id="podcast-audio" preload="metadata" src="podcast-episode.m4a"></audio>
+                </div>
+
+                <!-- Episode Details -->
+                <div style="display: flex; flex-wrap: wrap; gap: 0.6rem;">
+                    <span class="sharp-edge" style="padding: 0.3rem 0.75rem; font-size: 0.7rem; font-family: var(--font-mono); text-transform: uppercase; letter-spacing: 0.06em; background: rgba(0, 230, 118, 0.04); border: 1px solid rgba(0, 230, 118, 0.1); color: var(--accent-green);">AI Coding</span>
+                    <span class="sharp-edge" style="padding: 0.3rem 0.75rem; font-size: 0.7rem; font-family: var(--font-mono); text-transform: uppercase; letter-spacing: 0.06em; background: rgba(0, 229, 255, 0.04); border: 1px solid rgba(0, 229, 255, 0.1); color: var(--accent-cyan);">BYOK</span>
+                    <span class="sharp-edge" style="padding: 0.3rem 0.75rem; font-size: 0.7rem; font-family: var(--font-mono); text-transform: uppercase; letter-spacing: 0.06em; background: rgba(41, 121, 255, 0.04); border: 1px solid rgba(41, 121, 255, 0.1); color: var(--accent-blue);">Model Freedom</span>
+                    <span class="sharp-edge" style="padding: 0.3rem 0.75rem; font-size: 0.7rem; font-family: var(--font-mono); text-transform: uppercase; letter-spacing: 0.06em; background: rgba(255, 145, 0, 0.04); border: 1px solid rgba(255, 145, 0, 0.1); color: var(--accent-orange);">Founder Story</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════ PRICING SECTION (8) ═══════════════════════════════════ -->
+    <section id="pricing" class="section-divider reveal">
+        <div style="text-align: center; margin-bottom: 3.5rem;">
+            <span class="section-tag" style="color: var(--accent-cyan); background: rgba(0, 229, 255, 0.05); border-color: rgba(0, 229, 255, 0.15);">Software Plans</span>
+            <h2 class="section-title">Lux Coder Subscriptions</h2>
+            <p class="section-subtitle" style="margin-left: auto; margin-right: auto;">Unlock full model freedom. Bring your own keys and run coding operations without markup.</p>
+        </div>
+
+        <div class="pricing-grid">
+            <!-- Solo -->
+            <div class="pricing-card glow-cyan sharp-edge">
+                <h3>Solo</h3>
+                <p class="plan-desc font-mono" style="font-family: var(--font-mono); font-size: 0.8rem; text-transform: uppercase;">Best for solo builders getting started</p>
+                <div class="pricing-price" style="color: var(--accent-cyan);">$29 <span>/ month</span></div>
+                <ul class="pricing-features">
+                    <li><span class="check" style="color: var(--accent-cyan);">✓</span> Lux Coder in VS Code</li>
+                    <li><span class="check" style="color: var(--accent-cyan);">✓</span> Model switching</li>
+                    <li><span class="check" style="color: var(--accent-cyan);">✓</span> Saved sessions</li>
+                    <li><span class="check" style="color: var(--accent-cyan);">✓</span> Memory wiki</li>
+                    <li><span class="check" style="color: var(--accent-cyan);">✓</span> Basic sub-agents</li>
+                    <li><span class="check" style="color: var(--accent-cyan);">✓</span> PDF/screenshot export</li>
+                    <li><span class="check" style="color: var(--accent-cyan);">✓</span> BYOK setup</li>
+                </ul>
+                <button class="btn btn-primary sharp-edge btn-pricing-cta" data-plan="Lux Coder Solo" data-price-key="coder_solo" style="width: 100%;">Start Solo</button>
+            </div>
+
+            <!-- Pro Builder -->
+            <div class="pricing-card popular sharp-edge" style="border-color: var(--accent-cyan); box-shadow: 0 0 0 1px var(--accent-cyan), var(--shadow-glow); background: linear-gradient(180deg, rgba(0, 229, 255, 0.04) 0%, var(--bg-card) 40%);">
+                <div style="position: absolute; top: 18px; right: -32px; background: linear-gradient(135deg, var(--accent-blue), var(--accent-cyan)); color: #06080d; font-size: 0.65rem; font-weight: 800; padding: 0.3rem 2.5rem; transform: rotate(45deg); letter-spacing: 0.08em;">BEST VALUE</div>
+                <h3>Pro Builder</h3>
+                <p class="plan-desc font-mono" style="font-family: var(--font-mono); font-size: 0.8rem; text-transform: uppercase; color: var(--accent-cyan);">Best value for serious builders</p>
+                <div class="pricing-price" style="color: var(--accent-cyan);">$79 <span>/ month</span></div>
+                <ul class="pricing-features">
+                    <li><span class="check" style="color: var(--accent-cyan);">✓</span> Everything in Solo</li>
+                    <li><span class="check" style="color: var(--accent-cyan);">✓</span> 16-agent dev team</li>
+                    <li><span class="check" style="color: var(--accent-cyan);">✓</span> MCP tools and plugins</li>
+                    <li><span class="check" style="color: var(--accent-cyan);">✓</span> Diff review visual panels</li>
+                    <li><span class="check" style="color: var(--accent-cyan);">✓</span> Parallel build sessions</li>
+                    <li><span class="check" style="color: var(--accent-cyan);">✓</span> USB/Lux Agent connector</li>
+                    <li><span class="check" style="color: var(--accent-cyan);">✓</span> Premium branded exports</li>
+                    <li><span class="check" style="color: var(--accent-cyan);">✓</span> Priority updater support</li>
+                </ul>
+                <button class="btn btn-primary sharp-edge btn-pricing-cta" data-plan="Lux Coder Pro Builder" data-price-key="coder_pro" style="width: 100%;">Start Pro Builder</button>
+            </div>
+
+            <!-- Team / Agency -->
+            <div class="pricing-card glow-cyan sharp-edge">
+                <h3>Team / Agency</h3>
+                <p class="plan-desc font-mono" style="font-family: var(--font-mono); font-size: 0.8rem; text-transform: uppercase;">Best for agencies and small teams</p>
+                <div class="pricing-price" style="color: var(--accent-cyan);">$149 <span>/ month</span></div>
+                <ul class="pricing-features">
+                    <li><span class="check" style="color: var(--accent-cyan);">✓</span> Everything in Pro Builder</li>
+                    <li><span class="check" style="color: var(--accent-cyan);">✓</span> Team shared workflows</li>
+                    <li><span class="check" style="color: var(--accent-cyan);">✓</span> Client delivery templates</li>
+                    <li><span class="check" style="color: var(--accent-cyan);">✓</span> Advanced export/reporting</li>
+                    <li><span class="check" style="color: var(--accent-cyan);">✓</span> White-label summaries</li>
+                    <li><span class="check" style="color: var(--accent-cyan);">✓</span> Priority developer onboarding</li>
+                </ul>
+                <button class="btn btn-primary sharp-edge btn-pricing-cta" data-plan="Lux Coder Team / Agency" data-price-key="coder_team" style="width: 100%;">Start Team</button>
+            </div>
+
+            <!-- Enterprise -->
+            <div class="pricing-card glow-cyan sharp-edge" style="border-style: dashed;">
+                <h3>Enterprise</h3>
+                <p class="plan-desc font-mono" style="font-family: var(--font-mono); font-size: 0.8rem; text-transform: uppercase;">Best for secure or offline teams</p>
+                <div class="pricing-price" style="color: var(--accent-cyan);">$499+ <span>/ month</span></div>
+                <ul class="pricing-features">
+                    <li><span class="check" style="color: var(--accent-cyan);">✓</span> Private onsite configuration</li>
+                    <li><span class="check" style="color: var(--accent-cyan);">✓</span> 100% Local-first database setups</li>
+                    <li><span class="check" style="color: var(--accent-cyan);">✓</span> Mac mini server connectivity</li>
+                    <li><span class="check" style="color: var(--accent-cyan);">✓</span> Dedicated custom workflow loops</li>
+                    <li><span class="check" style="color: var(--accent-cyan);">✓</span> Custom SLA response</li>
+                    <li><span class="check" style="color: var(--accent-cyan);">✓</span> License & activation offline keys</li>
+                </ul>
+                <button class="btn btn-secondary sharp-edge btn-pricing-cta" data-plan="Lux Coder Enterprise" data-price-key="coder_enterprise" style="width: 100%;">Contact Sales</button>
+            </div>
+        </div>
+
+        <p style="text-align: center; margin-top: 2rem; font-size: 0.85rem; color: var(--text-muted); font-family: var(--font-mono);">
+            * Note: API/model usage is separate. Lux Coder is BYOK-friendly so users can control provider costs directly.
+        </p>
+    </section>
+
+    <!-- ═══════════════════════════════════ EXPORT SYSTEM SECTION (9) ═══════════════════════════════════ -->
+    <section id="exports" class="section-divider reveal">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;" class="responsive-split-row">
+            <div class="showcase-image sharp-edge" style="border-color: rgba(0, 229, 255, 0.12);">
+                <img src="infographic-cost-value.png" alt="Lux Coder Cost + Value — Premium AI Coding Suite for Builders">
+            </div>
+            <div class="showcase-text">
+                <span class="section-tag" style="color: var(--accent-cyan); background: rgba(0, 229, 255, 0.05); border-color: rgba(0, 229, 255, 0.15);">Proof of Work</span>
+                <h2 class="section-title" style="font-size: 2.2rem; line-height: 1.2;">Turn work into client-ready proof.</h2>
+                <p style="color: var(--text-secondary); line-height: 1.75; margin-bottom: 1.5rem;">
+                    Lux Coder includes a hardened local export system that captures benchmark pages, chat sessions, reports, and workspace views as high-fidelity PDFs or screenshots. Everything renders client-side, preserving the local-first, zero-data-leakage philosophy.
+                </p>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; font-size: 0.85rem;">
+                    <ul class="pricing-features" style="gap: 0.5rem; flex-grow: unset;">
+                        <li><span class="check" style="color: var(--accent-cyan);">✓</span> Branded PDF title page</li>
+                        <li><span class="check" style="color: var(--accent-cyan);">✓</span> Screenshot session exports</li>
+                        <li><span class="check" style="color: var(--accent-cyan);">✓</span> Dark theme preservation</li>
+                    </ul>
+                    <ul class="pricing-features" style="gap: 0.5rem; flex-grow: unset;">
+                        <li><span class="check" style="color: var(--accent-cyan);">✓</span> Glow/border-safe rendering</li>
+                        <li><span class="check" style="color: var(--accent-cyan);">✓</span> Long session scale fallback</li>
+                        <li><span class="check" style="color: var(--accent-cyan);">✓</span> Exported proof-of-work</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════ FINAL CTA (10) ═══════════════════════════════════ -->
+    <section id="final-cta" class="section-divider reveal" style="text-align: center; padding: 6rem 1.5rem;">
+        <span class="section-tag" style="color: var(--accent-cyan); background: rgba(0, 229, 255, 0.05); border-color: rgba(0, 229, 255, 0.15);">Deploy Coder</span>
+        <h2 class="section-title" style="font-size: 2.8rem; margin-bottom: 1rem;">Build smarter from the editor you already use.</h2>
+        <p class="section-subtitle" style="margin-left: auto; margin-right: auto; max-width: 580px; margin-bottom: 2.5rem;">
+            Lux Coder gives you the control of open tooling, the polish of a premium product, and the flexibility to use the best AI models without being locked into one company.
+        </p>
+
+        <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 1.25rem; margin-bottom: 3rem;">
+            <button class="btn btn-primary sharp-edge" onclick="document.getElementById('pricing').scrollIntoView({behavior: 'smooth'})">Start Pro Builder</button>
+            <button class="btn btn-secondary sharp-edge" onclick="document.getElementById('comparison').scrollIntoView({behavior: 'smooth'})">Compare Plans</button>
+            <button class="btn btn-secondary sharp-edge" onclick="alert('Launching visual demo of Lux Coder sub-agents...');">See Demo</button>
+        </div>
+
+        <p style="font-size: 0.85rem; color: var(--text-muted); font-family: var(--font-mono);">
+            Part of the Lux Automaton ecosystem, alongside <a href="usb.html" style="color: var(--accent-green); text-decoration: underline;">Lux Agent USB</a> and <a href="packs.html" style="color: var(--accent-orange); text-decoration: underline;">Success Packs</a>.
+        </p>
+    </section>
+
+    <!-- ═══════════════════════════════════ FOOTER ═══════════════════════════════════ -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <img src="lux-coder-logo.jpeg" alt="Lux Coder" class="sharp-edge" style="border-radius: 4px;">
+                        <span style="background: linear-gradient(135deg, #fff 40%, var(--accent-cyan)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Lux Coder</span>
+                    </div>
+                    <p>Orchestrate the best AI models from one branded VS Code command center. Zero vendor lock-in.</p>
+                </div>
+                <div class="footer-column">
+                    <h4>Software Suite</h4>
+                    <ul>
+                        <li><a href="features.html">Features Catalog</a></li>
+                        <li><a href="comparison.html">Compare Systems</a></li>
+                        <li><a href="#pricing">Subscription Pricing</a></li>
+                        <li><a href="license.html">License Lookups</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Ecosystem Nodes</h4>
+                    <ul>
+                        <li><a href="usb.html">Lux Agent USB</a></li>
+                        <li><a href="packs.html">Success Packs</a></li>
+                        <li><a href="partners.html">Partners Program</a></li>
+                        <li><a href="affiliate.html">Affiliate Rewards</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="https://luxautomaton-ux.github.io/lux-agent-website/" target="_blank">Lux Agent Web</a></li>
+                        <li><a href="#">System Docs</a></li>
+                        <li><a href="#">API Reference</a></li>
+                        <li><a href="#">Developer Support</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 Lux Automaton. All rights reserved. Developed under sovereignty guidelines.</p>
+                <p>Build faster. Run smarter. Own your AI system.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ═══════════════════════════════════ SIMULATED CHECKOUT MODAL ═══════════════════════════════════ -->
+    <div class="modal-overlay" id="checkout-modal">
+        <div class="modal-content sharp-edge">
+            <button class="modal-close" aria-label="Close modal">&times;</button>
+            <h3 style="font-size: 1.3rem; font-weight: 800; margin-bottom: 0.5rem; color: #fff;">Stripe Secure Checkout</h3>
+            <p id="checkout-plan-name" style="font-size: 0.85rem; color: var(--accent-cyan); margin-bottom: 1.5rem; font-family: var(--font-mono);">Pro Builder Plan</p>
+            
+            <form id="checkout-form">
+                <div class="form-field">
+                    <label class="form-label">Email Address</label>
+                    <input type="email" class="form-input sharp-edge" required placeholder="e.g. founder@mycompany.com">
+                </div>
+                <div class="form-field">
+                    <label class="form-label">Card Details</label>
+                    <input type="text" class="form-input sharp-edge" placeholder="•••• •••• •••• ••••" required style="font-family: var(--font-mono);">
+                </div>
+                <div class="form-row">
+                    <div class="form-field">
+                        <label class="form-label">Expiry Date</label>
+                        <input type="text" class="form-input sharp-edge" placeholder="MM / YY" required style="font-family: var(--font-mono); text-align: center;">
+                    </div>
+                    <div class="form-field">
+                        <label class="form-label">CVC</label>
+                        <input type="text" class="form-input sharp-edge" placeholder="•••" required style="font-family: var(--font-mono); text-align: center;">
+                    </div>
+                </div>
+                <div style="font-size: 0.72rem; color: var(--text-muted); margin-bottom: 1.5rem; line-height: 1.4;">
+                    Your payment will be processed securely via Stripe. By completing checkout, you authorize a recurring subscription matching the plan terms.
+                </div>
+                <button type="submit" class="btn btn-primary sharp-edge" id="btn-pay-simulate" style="width: 100%;">Complete Purchase</button>
+            </form>
+
+            <div id="checkout-success" style="display: none; text-align: center; padding: 1rem 0;">
+                <div style="width: 48px; height: 48px; border-radius: 50%; background: rgba(0, 229, 255, 0.1); border: 1px solid var(--accent-cyan); display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; font-size: 1.5rem; color: var(--accent-cyan);">✓</div>
+                <h4 style="font-size: 1.25rem; font-weight: 800; color: #fff; margin-bottom: 0.5rem;">Purchase Complete!</h4>
+                <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1.5rem;">Your subscription is active. Copy your license key to activate Lux Coder in VS Code:</p>
+                <div style="display: flex; gap: 0.5rem; align-items: center; background: rgba(6, 8, 13, 0.8); border: 1px solid var(--border-color); padding: 0.6rem 0.85rem; margin-bottom: 1.5rem;">
+                    <code id="license-key" style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--accent-cyan); flex-grow: 1; letter-spacing: 0.05em;">LUX-CDR-XXXX-XXXX-XXXX</code>
+                    <button class="btn btn-secondary sharp-edge" id="btn-copy-license" style="padding: 0.25rem 0.6rem; font-size: 0.7rem;">Copy</button>
+                </div>
+                <button class="btn btn-secondary sharp-edge" onclick="document.getElementById('checkout-modal').classList.remove('active')" style="width: 100%;">Done</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
