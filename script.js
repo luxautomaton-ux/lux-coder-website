@@ -52,137 +52,182 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     /* ═══════════════════════════════════════════════════
-       PRICING TOGGLE
+       BILLING TOGGLE (MONTHLY / ANNUAL)
        ═══════════════════════════════════════════════════ */
-    const toggleBtns = document.querySelectorAll('.pricing-toggle button');
-    const monthlyPriceEl = document.getElementById('monthly-price');
-    const annualPriceEl = document.getElementById('annual-price');
-    const lifetimePriceEl = document.getElementById('lifetime-price');
+    const billingToggles = document.querySelectorAll('.billing-toggle');
 
-    let billingInterval = 'annual';
+    billingToggles.forEach(toggle => {
+        const labels = toggle.querySelectorAll('.toggle-label');
+        const noteId = toggle.id.replace('billing-toggle-', 'billing-note-');
+        const note = document.getElementById(noteId);
 
-    if (toggleBtns.length > 0) {
-        toggleBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                toggleBtns.forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
+        labels.forEach(label => {
+            label.addEventListener('click', () => {
+                const billing = label.dataset.billing;
 
-                billingInterval = btn.dataset.interval;
+                // Update active state on toggle labels
+                labels.forEach(l => l.classList.remove('active'));
+                label.classList.add('active');
 
-                if (billingInterval === 'monthly') {
-                    if (monthlyPriceEl) monthlyPriceEl.innerHTML = '$20 <span>/ month</span>';
-                    if (annualPriceEl) annualPriceEl.innerHTML = '$15 <span>/ month</span>';
-                    if (lifetimePriceEl) lifetimePriceEl.innerHTML = '$300 <span>one-time</span>';
-                } else {
-                    if (monthlyPriceEl) monthlyPriceEl.innerHTML = '$240 <span>/ year</span>';
-                    if (annualPriceEl) annualPriceEl.innerHTML = '$149 <span>/ year</span>';
-                    if (lifetimePriceEl) lifetimePriceEl.innerHTML = '$300 <span>one-time</span>';
+                // Show/hide savings note
+                if (note) {
+                    if (billing === 'annual') {
+                        note.classList.add('visible');
+                    } else {
+                        note.classList.remove('visible');
+                    }
                 }
+
+                // Update all pricing displays on the page
+                updatePricingDisplay(billing);
             });
+        });
+    });
+
+    /**
+     * Updates all pricing cards to show monthly or annual pricing.
+     * Uses data-monthly and data-annual attributes on .pricing-price elements.
+     * Also updates CTA button data-billing and data-price-key attributes.
+     */
+    function updatePricingDisplay(billing) {
+        const priceEls = document.querySelectorAll('.pricing-price[data-monthly]');
+
+        priceEls.forEach(priceEl => {
+            // Smooth fade transition
+            priceEl.classList.add('fade-out');
+
+            setTimeout(() => {
+                if (billing === 'annual') {
+                    priceEl.innerHTML = priceEl.dataset.annual;
+                } else {
+                    priceEl.innerHTML = priceEl.dataset.monthly;
+                }
+                priceEl.classList.remove('fade-out');
+            }, 200);
+        });
+
+        // Update CTA buttons billing attribute and price keys
+        const ctaButtons = document.querySelectorAll('.btn-pricing-cta[data-billing]');
+        ctaButtons.forEach(btn => {
+            const currentKey = btn.dataset.priceKey;
+            if (!currentKey) return;
+
+            // Only update coder subscription buttons (not packs/usb/setup)
+            if (!currentKey.startsWith('coder_')) return;
+
+            // Swap _monthly/_annual suffix
+            const baseKey = currentKey.replace(/_monthly$/, '').replace(/_annual$/, '');
+            btn.dataset.priceKey = baseKey + '_' + billing;
+            btn.dataset.billing = billing;
         });
     }
 
     /* ═══════════════════════════════════════════════════
-       CHECKOUT MODAL & STRIPE ACTION REDIRECTS
+       STRIPE CHECKOUT REDIRECT
        ═══════════════════════════════════════════════════ */
-    const modal = document.getElementById('checkout-modal');
-    const ctaBtns = document.querySelectorAll('.btn-pricing-cta');
-    const closeBtn = document.querySelector('.modal-close');
-    const payBtn = document.getElementById('btn-pay-simulate');
-    const checkoutSuccess = document.getElementById('checkout-success');
-    const checkoutForm = document.getElementById('checkout-form');
-    const planName = document.getElementById('checkout-plan-name');
-    const licenseKeyText = document.getElementById('license-key');
 
-    // Handle checkout buttons
+    // Stripe test mode price ID map
+    // In production, replace these with real Stripe Price IDs
+    const STRIPE_PRICE_MAP = {
+        // Coder subscriptions — monthly
+        'coder_solo_monthly': 'price_test_solo_monthly',
+        'coder_pro_monthly': 'price_test_pro_monthly',
+        'coder_team_monthly': 'price_test_team_monthly',
+        'coder_enterprise_monthly': null, // Contact sales
+
+        // Coder subscriptions — annual
+        'coder_solo_annual': 'price_test_solo_annual',
+        'coder_pro_annual': 'price_test_pro_annual',
+        'coder_team_annual': 'price_test_team_annual',
+        'coder_enterprise_annual': null, // Contact sales
+
+        // USB products (one-time)
+        'usb_starter': 'price_test_usb_starter',
+        'usb_offline': 'price_test_usb_offline',
+        'usb_pro': 'price_test_usb_pro',
+
+        // Success Packs (one-time)
+        'pack_starter': 'price_test_pack_starter',
+        'pack_pro': 'price_test_pack_pro',
+        'pack_custom': 'price_test_pack_custom',
+
+        // Setup services (one-time)
+        'setup_lite': 'price_test_setup_lite',
+        'setup_business': 'price_test_setup_business',
+        'setup_dfy': 'price_test_setup_dfy'
+    };
+
+    // Get the Stripe publishable key from a data attribute on body
+    // e.g. <body data-stripe-key="pk_test_...">
+    const stripePublishableKey = document.body.dataset.stripeKey || 'pk_test_placeholder';
+
+    // Success/cancel URLs for Stripe Checkout redirect
+    const currentOrigin = window.location.origin;
+    const successUrl = currentOrigin + '/success.html?session_id={CHECKOUT_SESSION_ID}';
+    const cancelUrl = window.location.href;
+
+    const ctaBtns = document.querySelectorAll('.btn-pricing-cta');
+
     ctaBtns.forEach(btn => {
         btn.addEventListener('click', (e) => {
-            const plan = btn.dataset.plan;
-            const priceKey = btn.dataset.priceKey;
+            e.preventDefault();
 
-            // If we are not on index.html (meaning checkout modal isn't present), redirect to index.html
-            if (!modal) {
-                e.preventDefault();
-                window.location.href = `index.html?plan=${encodeURIComponent(plan)}&price_key=${encodeURIComponent(priceKey)}`;
+            const priceKey = btn.dataset.priceKey;
+            const plan = btn.dataset.plan;
+            const billing = btn.dataset.billing || 'one-time';
+
+            // Enterprise / Contact Sales — redirect to contact
+            if (priceKey && priceKey.includes('enterprise')) {
+                window.location.href = 'mailto:sales@luxautomaton.com?subject=' +
+                    encodeURIComponent('Enterprise Inquiry: ' + plan);
                 return;
             }
 
-            // Otherwise, trigger the local pricing modal
-            planName.textContent = plan + ` Plan (${billingInterval.toUpperCase()})`;
-            modal.classList.add('active');
-            checkoutForm.style.display = 'block';
-            checkoutSuccess.style.display = 'none';
-        });
-    });
+            // Custom setup — redirect to contact
+            if (priceKey === 'setup_dfy' || priceKey === 'pack_custom') {
+                window.location.href = 'mailto:sales@luxautomaton.com?subject=' +
+                    encodeURIComponent('Custom Inquiry: ' + plan);
+                return;
+            }
 
-    // Auto-open modal on pricing.html load if parameters are present
-    if (modal) {
-        const urlParams = new URLSearchParams(window.location.search);
-        const autoPlan = urlParams.get('plan');
-        const autoPriceKey = urlParams.get('price_key');
+            // Look up the Stripe Price ID
+            const stripePriceId = STRIPE_PRICE_MAP[priceKey];
 
-        if (autoPlan && autoPriceKey) {
-            planName.textContent = decodeURIComponent(autoPlan) + ` Plan (ANNUAL)`;
-            modal.classList.add('active');
-            checkoutForm.style.display = 'block';
-            checkoutSuccess.style.display = 'none';
-        }
-    }
+            if (!stripePriceId) {
+                console.warn('No Stripe price ID found for key:', priceKey);
+                alert('This plan is not yet available for online checkout. Please contact sales@luxautomaton.com.');
+                return;
+            }
 
-    if (closeBtn && modal) {
-        closeBtn.addEventListener('click', () => {
-            modal.classList.remove('active');
-        });
-    }
+            // Determine if this is a subscription or one-time payment
+            const isSubscription = priceKey.startsWith('coder_');
+            const mode = isSubscription ? 'subscription' : 'payment';
 
-    window.addEventListener('click', (e) => {
-        if (modal && e.target === modal) {
-            modal.classList.remove('active');
-        }
-    });
+            // Redirect to Stripe Checkout
+            // In production, you'd create a Checkout Session server-side.
+            // For static sites in test mode, we build the redirect URL directly.
+            const checkoutUrl = 'https://checkout.stripe.com/pay/' + stripePriceId +
+                '?mode=' + mode +
+                '&success_url=' + encodeURIComponent(successUrl) +
+                '&cancel_url=' + encodeURIComponent(cancelUrl);
 
-    if (payBtn) {
-        payBtn.addEventListener('click', (e) => {
-            e.preventDefault();
+            // Show loading state on button
+            const originalText = btn.textContent;
+            btn.textContent = 'Redirecting to Stripe...';
+            btn.disabled = true;
 
-            // Animate button
-            payBtn.textContent = 'Processing...';
-            payBtn.disabled = true;
-
+            // Small delay for visual feedback before redirect
             setTimeout(() => {
-                if (checkoutForm) checkoutForm.style.display = 'none';
-                if (checkoutSuccess) checkoutSuccess.style.display = 'block';
-                payBtn.textContent = 'Complete Purchase';
-                payBtn.disabled = false;
+                window.location.href = checkoutUrl;
 
-                // Generate license key
-                const segments = Array.from({ length: 3 }, () =>
-                    Math.random().toString(36).substring(2, 7).toUpperCase()
-                );
-                if (licenseKeyText) {
-                    licenseKeyText.textContent = `LUX-${segments[0]}-${segments[1]}-${segments[2]}-ZEN`;
-                }
-            }, 1200);
-        });
-    }
-
-    /* ═══════════════════════════════════════════════════
-       COPY LICENSE KEY
-       ═══════════════════════════════════════════════════ */
-    const copyLicenseBtn = document.getElementById('btn-copy-license');
-    if (copyLicenseBtn && licenseKeyText) {
-        copyLicenseBtn.addEventListener('click', () => {
-            navigator.clipboard.writeText(licenseKeyText.textContent).then(() => {
-                const original = copyLicenseBtn.textContent;
-                copyLicenseBtn.textContent = 'Copied!';
-                copyLicenseBtn.style.color = '#34d399';
+                // Reset button in case redirect is blocked
                 setTimeout(() => {
-                    copyLicenseBtn.textContent = original;
-                    copyLicenseBtn.style.color = '';
-                }, 2000);
-            });
+                    btn.textContent = originalText;
+                    btn.disabled = false;
+                }, 3000);
+            }, 400);
         });
-    }
+    });
 
     /* ═══════════════════════════════════════════════════
        COMPARISON MATRIX TABS

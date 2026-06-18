@@ -88,7 +88,7 @@
         }
     </style>
 </head>
-<body>
+<body data-stripe-key="pk_test_placeholder">
 
     <!-- ═══════════════════════════════════ HEADER ═══════════════════════════════════ -->
     <header id="main-header">
@@ -612,12 +612,22 @@
             <p class="section-subtitle" style="margin-left: auto; margin-right: auto;">Unlock full model freedom. Bring your own keys and run coding operations without markup.</p>
         </div>
 
+        <!-- Billing Toggle -->
+        <div class="billing-toggle-wrap" style="text-align: center;">
+            <div class="billing-toggle" id="billing-toggle-index">
+                <span class="toggle-label active" data-billing="monthly">Monthly</span>
+                <span class="toggle-label" data-billing="annual">Annual</span>
+            </div>
+            <span class="billing-toggle-note" id="billing-note-index">Save about 20% with annual billing.</span>
+        </div>
+
         <div class="pricing-grid">
             <!-- Solo -->
             <div class="pricing-card glow-cyan sharp-edge">
+                <div class="trial-badge">7-day free trial</div>
                 <h3>Solo</h3>
                 <p class="plan-desc font-mono" style="font-family: var(--font-mono); font-size: 0.8rem; text-transform: uppercase;">Best for solo builders getting started</p>
-                <div class="pricing-price" style="color: var(--accent-cyan);">$29 <span>/ month</span></div>
+                <div class="pricing-price" style="color: var(--accent-cyan);" data-monthly="$29 <span>/ month</span>" data-annual="$279 <span>/ year</span>" data-annual-effective="$23.25/mo effective">$29 <span>/ month</span></div>
                 <ul class="pricing-features">
                     <li><span class="check" style="color: var(--accent-cyan);">✓</span> Desktop App & VS Code Extension</li>
                     <li><span class="check" style="color: var(--accent-cyan);">✓</span> Model switching</li>
@@ -627,15 +637,16 @@
                     <li><span class="check" style="color: var(--accent-cyan);">✓</span> PDF/screenshot export</li>
                     <li><span class="check" style="color: var(--accent-cyan);">✓</span> BYOK setup</li>
                 </ul>
-                <button class="btn btn-primary sharp-edge btn-pricing-cta" data-plan="Lux Coder Solo" data-price-key="coder_solo" style="width: 100%;">Start Solo</button>
+                <button class="btn btn-primary sharp-edge btn-pricing-cta" data-plan="Lux Coder Solo" data-price-key="coder_solo_monthly" data-billing="monthly" style="width: 100%;">Start Solo</button>
             </div>
 
             <!-- Pro Builder -->
             <div class="pricing-card popular sharp-edge" style="border-color: var(--accent-cyan); box-shadow: 0 0 0 1px var(--accent-cyan), var(--shadow-glow); background: linear-gradient(180deg, rgba(0, 229, 255, 0.04) 0%, var(--bg-card) 40%);">
                 <div style="position: absolute; top: 18px; right: -32px; background: linear-gradient(135deg, var(--accent-blue), var(--accent-cyan)); color: #06080d; font-size: 0.65rem; font-weight: 800; padding: 0.3rem 2.5rem; transform: rotate(45deg); letter-spacing: 0.08em;">BEST VALUE</div>
+                <div class="trial-badge">7-day free trial</div>
                 <h3>Pro Builder</h3>
                 <p class="plan-desc font-mono" style="font-family: var(--font-mono); font-size: 0.8rem; text-transform: uppercase; color: var(--accent-cyan);">Best value for serious builders</p>
-                <div class="pricing-price" style="color: var(--accent-cyan);">$79 <span>/ month</span></div>
+                <div class="pricing-price" style="color: var(--accent-cyan);" data-monthly="$79 <span>/ month</span>" data-annual="$759 <span>/ year</span>" data-annual-effective="$63.25/mo effective">$79 <span>/ month</span></div>
                 <ul class="pricing-features">
                     <li><span class="check" style="color: var(--accent-cyan);">✓</span> Everything in Solo</li>
                     <li><span class="check" style="color: var(--accent-cyan);">✓</span> 16-agent dev team</li>
@@ -646,14 +657,14 @@
                     <li><span class="check" style="color: var(--accent-cyan);">✓</span> Premium branded exports</li>
                     <li><span class="check" style="color: var(--accent-cyan);">✓</span> Priority updater support</li>
                 </ul>
-                <button class="btn btn-primary sharp-edge btn-pricing-cta" data-plan="Lux Coder Pro Builder" data-price-key="coder_pro" style="width: 100%;">Start Pro Builder</button>
+                <button class="btn btn-primary sharp-edge btn-pricing-cta" data-plan="Lux Coder Pro Builder" data-price-key="coder_pro_monthly" data-billing="monthly" style="width: 100%;">Start Pro Builder</button>
             </div>
 
             <!-- Team / Agency -->
             <div class="pricing-card glow-cyan sharp-edge">
                 <h3>Team / Agency</h3>
                 <p class="plan-desc font-mono" style="font-family: var(--font-mono); font-size: 0.8rem; text-transform: uppercase;">Best for agencies and small teams</p>
-                <div class="pricing-price" style="color: var(--accent-cyan);">$149 <span>/ month</span></div>
+                <div class="pricing-price" style="color: var(--accent-cyan);" data-monthly="$149 <span>/ month</span>" data-annual="$1,429 <span>/ year</span>" data-annual-effective="$119.08/mo effective">$149 <span>/ month</span></div>
                 <ul class="pricing-features">
                     <li><span class="check" style="color: var(--accent-cyan);">✓</span> Everything in Pro Builder</li>
                     <li><span class="check" style="color: var(--accent-cyan);">✓</span> Team shared workflows</li>
@@ -662,14 +673,14 @@
                     <li><span class="check" style="color: var(--accent-cyan);">✓</span> White-label summaries</li>
                     <li><span class="check" style="color: var(--accent-cyan);">✓</span> Priority developer onboarding</li>
                 </ul>
-                <button class="btn btn-primary sharp-edge btn-pricing-cta" data-plan="Lux Coder Team / Agency" data-price-key="coder_team" style="width: 100%;">Start Team</button>
+                <button class="btn btn-primary sharp-edge btn-pricing-cta" data-plan="Lux Coder Team / Agency" data-price-key="coder_team_monthly" data-billing="monthly" style="width: 100%;">Start Team</button>
             </div>
 
             <!-- Enterprise -->
             <div class="pricing-card glow-cyan sharp-edge" style="border-style: dashed;">
                 <h3>Enterprise</h3>
                 <p class="plan-desc font-mono" style="font-family: var(--font-mono); font-size: 0.8rem; text-transform: uppercase;">Best for secure or offline teams</p>
-                <div class="pricing-price" style="color: var(--accent-cyan);">$499+ <span>/ month</span></div>
+                <div class="pricing-price" style="color: var(--accent-cyan);" data-monthly="$499+ <span>/ month</span>" data-annual="Custom <span>pricing</span>" data-annual-effective="">$499+ <span>/ month</span></div>
                 <ul class="pricing-features">
                     <li><span class="check" style="color: var(--accent-cyan);">✓</span> Private onsite configuration</li>
                     <li><span class="check" style="color: var(--accent-cyan);">✓</span> 100% Local-first database setups</li>
@@ -678,7 +689,7 @@
                     <li><span class="check" style="color: var(--accent-cyan);">✓</span> Custom SLA response</li>
                     <li><span class="check" style="color: var(--accent-cyan);">✓</span> License & activation offline keys</li>
                 </ul>
-                <button class="btn btn-secondary sharp-edge btn-pricing-cta" data-plan="Lux Coder Enterprise" data-price-key="coder_enterprise" style="width: 100%;">Contact Sales</button>
+                <button class="btn btn-secondary sharp-edge btn-pricing-cta" data-plan="Lux Coder Enterprise" data-price-key="coder_enterprise_monthly" data-billing="monthly" style="width: 100%;">Contact Sales</button>
             </div>
         </div>
 

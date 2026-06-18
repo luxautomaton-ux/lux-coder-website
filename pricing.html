@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="style.css">
     <link rel="icon" type="image/jpeg" href="lux-coder-logo.jpeg">
 </head>
-<body>
+<body data-stripe-key="pk_test_placeholder">
 
     <!-- ═══════════════════════════════════ HEADER ═══════════════════════════════════ -->
     <header id="main-header">
@@ -106,12 +106,22 @@
             <h2 style="font-size: 1.8rem; font-weight: 800; color: var(--accent-cyan);">Lux Coder Subscriptions</h2>
         </div>
 
+        <!-- Billing Toggle -->
+        <div class="billing-toggle-wrap">
+            <div class="billing-toggle" id="billing-toggle-pricing">
+                <span class="toggle-label active" data-billing="monthly">Monthly</span>
+                <span class="toggle-label" data-billing="annual">Annual</span>
+            </div>
+            <span class="billing-toggle-note" id="billing-note-pricing">Save about 20% with annual billing.</span>
+        </div>
+
         <div class="pricing-grid" style="grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));">
             <!-- Solo -->
             <div class="pricing-card glow-cyan">
+                <div class="trial-badge">7-day free trial</div>
                 <h3>Solo</h3>
                 <p class="plan-desc">For individual developers</p>
-                <div class="pricing-price" style="color: var(--accent-cyan);">$29 <span>/ month</span></div>
+                <div class="pricing-price" style="color: var(--accent-cyan);" data-monthly="$29 <span>/ month</span>" data-annual="$279 <span>/ year</span>" data-annual-effective="$23.25/mo effective">$29 <span>/ month</span></div>
                 <ul class="pricing-features">
                     <li><span class="check" style="color: var(--accent-cyan);">✓</span> VS Code sidebar visual panel</li>
                     <li><span class="check" style="color: var(--accent-cyan);">✓</span> Access to 45+ models via BYOK</li>
@@ -120,15 +130,16 @@
                     <li><span class="check" style="color: var(--accent-cyan);">✓</span> Basic model switching</li>
                     <li><span class="check" style="color: var(--accent-cyan);">✓</span> standard community support</li>
                 </ul>
-                <button class="btn btn-primary btn-pricing-cta" data-plan="Lux Coder Solo" data-price-key="coder_solo" style="width: 100%;">Get Solo</button>
+                <button class="btn btn-primary btn-pricing-cta" data-plan="Lux Coder Solo" data-price-key="coder_solo_monthly" data-billing="monthly" style="width: 100%;">Get Solo</button>
             </div>
 
             <!-- Pro Builder -->
             <div class="pricing-card popular" style="border-color: var(--accent-cyan); box-shadow: 0 0 0 1px var(--accent-cyan), var(--shadow-glow); background: linear-gradient(180deg, rgba(0, 229, 255, 0.04) 0%, var(--bg-card) 40%);">
                 <div style="position: absolute; top: 18px; right: -32px; background: linear-gradient(135deg, var(--accent-blue), var(--accent-cyan)); color: #06080d; font-size: 0.65rem; font-weight: 800; padding: 0.3rem 2.5rem; transform: rotate(45deg); letter-spacing: 0.08em;">RECOMMENDED</div>
+                <div class="trial-badge">7-day free trial</div>
                 <h3>Pro Builder</h3>
                 <p class="plan-desc">For builders, founders, & teams</p>
-                <div class="pricing-price" style="color: var(--accent-cyan);">$79 <span>/ month</span></div>
+                <div class="pricing-price" style="color: var(--accent-cyan);" data-monthly="$79 <span>/ month</span>" data-annual="$759 <span>/ year</span>" data-annual-effective="$63.25/mo effective">$79 <span>/ month</span></div>
                 <ul class="pricing-features">
                     <li><span class="check" style="color: var(--accent-cyan);">✓</span> Everything in Solo Coder</li>
                     <li><span class="check" style="color: var(--accent-cyan);">✓</span> 16 Curated Sub-Agent specialists</li>
@@ -139,14 +150,14 @@
                     <li><span class="check" style="color: var(--accent-cyan);">✓</span> Branded PDF/screenshot exports</li>
                     <li><span class="check" style="color: var(--accent-cyan);">✓</span> Lux Agent USB bridge connector</li>
                 </ul>
-                <button class="btn btn-primary btn-pricing-cta" data-plan="Lux Coder Pro Builder" data-price-key="coder_pro" style="width: 100%;">Subscribe Pro</button>
+                <button class="btn btn-primary btn-pricing-cta" data-plan="Lux Coder Pro Builder" data-price-key="coder_pro_monthly" data-billing="monthly" style="width: 100%;">Subscribe Pro</button>
             </div>
 
             <!-- Team / Agency -->
             <div class="pricing-card glow-cyan">
                 <h3>Team / Agency</h3>
                 <p class="plan-desc">For software shops & operators</p>
-                <div class="pricing-price" style="color: var(--accent-cyan);">$149 <span>/ month</span></div>
+                <div class="pricing-price" style="color: var(--accent-cyan);" data-monthly="$149 <span>/ month</span>" data-annual="$1,429 <span>/ year</span>" data-annual-effective="$119.08/mo effective">$149 <span>/ month</span></div>
                 <ul class="pricing-features">
                     <li><span class="check" style="color: var(--accent-cyan);">✓</span> Everything in Pro Builder</li>
                     <li><span class="check" style="color: var(--accent-cyan);">✓</span> Shared team workspaces & workflows</li>
@@ -155,14 +166,14 @@
                     <li><span class="check" style="color: var(--accent-cyan);">✓</span> Team token budget manager</li>
                     <li><span class="check" style="color: var(--accent-cyan);">✓</span> Priority integration support</li>
                 </ul>
-                <button class="btn btn-primary btn-pricing-cta" data-plan="Lux Coder Team / Agency" data-price-key="coder_team" style="width: 100%;">Get Team</button>
+                <button class="btn btn-primary btn-pricing-cta" data-plan="Lux Coder Team / Agency" data-price-key="coder_team_monthly" data-billing="monthly" style="width: 100%;">Get Team</button>
             </div>
 
             <!-- Enterprise -->
             <div class="pricing-card glow-cyan">
                 <h3>Enterprise</h3>
                 <p class="plan-desc">For private deployment needs</p>
-                <div class="pricing-price" style="color: var(--accent-cyan);">$499 <span>/ month</span></div>
+                <div class="pricing-price" style="color: var(--accent-cyan);" data-monthly="$499+ <span>/ month</span>" data-annual="Custom <span>pricing</span>" data-annual-effective="">$499+ <span>/ month</span></div>
                 <ul class="pricing-features">
                     <li><span class="check" style="color: var(--accent-cyan);">✓</span> Custom local-first deployment</li>
                     <li><span class="check" style="color: var(--accent-cyan);">✓</span> Fully private air-gapped setups</li>
@@ -171,7 +182,7 @@
                     <li><span class="check" style="color: var(--accent-cyan);">✓</span> Dedicated SLA support packages</li>
                     <li><span class="check" style="color: var(--accent-cyan);">✓</span> On-prem server configurations</li>
                 </ul>
-                <button class="btn btn-primary btn-pricing-cta" data-plan="Lux Coder Enterprise" data-price-key="coder_enterprise" style="width: 100%;">Contact Sales</button>
+                <button class="btn btn-primary btn-pricing-cta" data-plan="Lux Coder Enterprise" data-price-key="coder_enterprise_monthly" data-billing="monthly" style="width: 100%;">Contact Sales</button>
             </div>
         </div>
     </section>
@@ -290,60 +301,7 @@
         </div>
     </section>
 
-    <!-- ═══════════════════════════════════ CHECKOUT MODAL ═══════════════════════════════════ -->
-    <div class="modal-overlay" id="checkout-modal">
-        <div class="modal-content">
-            <button class="modal-close">✕</button>
 
-            <!-- Payment Form -->
-            <form id="checkout-form">
-                <h3 style="font-size: 1.4rem; margin-bottom: 0.4rem; color: #fff; font-weight: 800;">Activate Subscription</h3>
-                <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 1.75rem;" id="checkout-plan-name">Professional Plan</p>
-
-                <div class="form-field">
-                    <label class="form-label">Email Address</label>
-                    <input type="email" class="form-input" placeholder="dev@luxautomaton.com" required>
-                </div>
-
-                <div class="form-field">
-                    <label class="form-label">Card Number</label>
-                    <input type="text" class="form-input" placeholder="4242 4242 4242 4242" required>
-                </div>
-
-                <div class="form-row" style="margin-bottom: 1.75rem;">
-                    <div class="form-field" style="margin-bottom: 0;">
-                        <label class="form-label">Expiry</label>
-                        <input type="text" class="form-input" placeholder="MM / YY" required>
-                    </div>
-                    <div class="form-field" style="margin-bottom: 0;">
-                        <label class="form-label">CVC</label>
-                        <input type="text" class="form-input" placeholder="123" required>
-                    </div>
-                </div>
-
-                <!-- Hidden inputs to store product ID / price key -->
-                <input type="hidden" id="checkout-price-key" value="">
-
-                <button class="btn btn-primary" id="btn-pay-simulate" style="width: 100%;">Complete Purchase</button>
-            </form>
-
-            <!-- Success Screen -->
-            <div id="checkout-success" style="display: none;">
-                <div style="text-align: center; padding: 1rem 0;">
-                    <div style="width: 56px; height: 56px; border-radius: 50%; background: rgba(52, 211, 153, 0.1); border: 1px solid rgba(52, 211, 153, 0.2); display: flex; align-items: center; justify-content: center; color: var(--success); font-size: 1.5rem; margin: 0 auto 1.5rem;">✓</div>
-                    <h3 style="font-size: 1.4rem; margin-bottom: 0.5rem; color: #fff; font-weight: 800;">Subscription Activated!</h3>
-                    <p style="color: var(--text-secondary); font-size: 0.88rem; margin-bottom: 1.5rem;">Your activation key is ready. Paste this inside VS Code settings:</p>
-
-                    <div style="background: var(--bg-void); border: 1px solid var(--border-color); border-radius: var(--radius-sm); padding: 0.85rem 1rem; font-family: var(--font-mono); font-size: 0.85rem; color: var(--accent-cyan); display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.75rem;">
-                        <span id="license-key">LUX-XXXXX-XXXXX-ZEN</span>
-                        <button id="btn-copy-license" style="background: rgba(0, 229, 255, 0.08); border: 1px solid rgba(0, 229, 255, 0.15); border-radius: 4px; color: var(--accent-cyan); cursor: pointer; font-size: 0.75rem; padding: 0.25rem 0.6rem; font-weight: 600;">Copy</button>
-                    </div>
-
-                    <button class="btn btn-secondary" onclick="document.getElementById('checkout-modal').classList.remove('active')" style="width: 100%;">Done</button>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <!-- ═══════════════════════════════════ FOOTER ═══════════════════════════════════ -->
     <footer>
