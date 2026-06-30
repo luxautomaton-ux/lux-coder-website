@@ -3,263 +3,108 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Partners Program | Lux Automaton</title>
-    <meta name="description" content="Collaborate with Lux Automaton. Partner tracks for Creators, Consultants, Agencies, Local Businesses, and Technical Integrators. Deploy local-first AI solutions.">
+    <title>Partners | Lux Coder Suite</title>
+    <meta name="description" content="Partner with Lux Coder Suite for integrations, implementation, training, and private AI coding workflows.">
     <link rel="stylesheet" href="style.css">
     <link rel="icon" type="image/jpeg" href="lux-coder-logo.jpeg">
+    <meta property="og:title" content="Partners | Lux Coder Suite">
+    <meta property="og:description" content="Partner with Lux Coder Suite for integrations, implementation, training, and private AI coding workflows.">
+    <meta property="og:image" content="lux-coder-share.png">
+    <meta property="og:type" content="website">
 </head>
-<body>
-
-    <!-- ═══════════════════════════════════ HEADER ═══════════════════════════════════ -->
+<body data-page="partners">
     <header id="main-header">
-        <div class="nav-container">
-            <a href="index.html" class="logo">
-                <img src="lux-coder-logo.jpeg" alt="Lux Automaton Logo">
-                <span>Lux Automaton</span>
+        <div class="nav-shell">
+            <a class="brand" href="index.html" aria-label="Lux Coder Suite home">
+                <img src="lux-coder-logo.jpeg" alt="">
+                <span>Lux Coder Suite</span>
             </a>
-            <ul class="nav-links">
-                <li><a href="coder.html">Lux Coder</a></li>
-                <li><a href="usb.html">Lux Agent USB</a></li>
-                <li><a href="packs.html">Success Packs</a></li>
-                <li><a href="pricing.html">Pricing</a></li>
-                <li><a href="affiliate.html">Affiliates</a></li>
-                <li class="active"><a href="partners.html">Partners</a></li>
-            </ul>
-            <button class="nav-cta" onclick="window.location.href='pricing.html'">Get System</button>
-            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
+            <nav aria-label="Primary navigation">
+                <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+                    <span></span><span></span><span></span>
+                </button>
+                <ul class="nav-links" id="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="features.html">Features</a></li>
+                    <li><a href="comparison.html">Compare</a></li>
+                    <li><a href="download.html">Download</a></li>
+                    <li><a href="pricing.html">Pricing</a></li>
+                    <li><a href="usb.html">Agent USB</a></li>
+                    <li><a href="partners.html" aria-current="page">Partners</a></li>
+                </ul>
+            </nav>
+            <a class="nav-cta" href="download.html">Get Suite</a>
         </div>
     </header>
+    <main>
 
-    <!-- ═══════════════════════════════════ HERO SECTION ═══════════════════════════════════ -->
-    <section class="hero" style="min-height: auto; padding-top: 11rem; padding-bottom: 5rem; background: linear-gradient(to right, rgba(6, 8, 13, 0.97) 0%, rgba(6, 8, 13, 0.88) 30%, rgba(6, 8, 13, 0.5) 55%, rgba(6, 8, 13, 0.2) 75%, rgba(6, 8, 13, 0.15) 100%), linear-gradient(to bottom, rgba(6, 8, 13, 0.7) 0%, transparent 25%, transparent 75%, rgba(6, 8, 13, 0.95) 100%), url('hero-bg.png') no-repeat center center / cover;">
-        <div class="hero-content">
-            <div class="hero-badge badge-cyan">
-                <span class="pulse-dot" style="background: var(--accent-cyan);"></span>
-                Channel Ecosystem
+        <section class="page-header">
+            <div>
+                <h1>Built with great partners.</h1>
+                <p>We collaborate with platforms, agencies, trainers, and implementation teams to power private AI workflows.</p>
             </div>
-            <h1 style="line-height: 1.15;">
-                Co-build & Deploy<br>
-                Next-Gen Private<br>
-                <span class="gradient-text" style="background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">AI Architectures.</span>
-            </h1>
-            <p>
-                Whether you are a creator training devs, a consultant designing enterprise workflows, or an agency deploying client software nodes, join hands with Lux Automaton to deliver private, hardware-enabled AI solutions.
-            </p>
-            <div class="hero-ctas">
-                <button class="btn btn-primary" onclick="document.getElementById('partners-form-section').scrollIntoView({behavior: 'smooth'})">
-                    Apply for Partnership
-                </button>
-                <button class="btn btn-secondary" onclick="document.getElementById('partner-tracks').scrollIntoView({behavior: 'smooth'})">
-                    Explore Partner Tracks
-                </button>
+            <aside class="context-panel">
+                <h2>Become a partner</h2>
+                <ul><li>Build integrations</li><li>Join install network</li><li>Co-market launches</li><li>Support operators</li></ul>
+            </aside>
+        </section>
+        <section class="section">
+            <div class="logo-cloud">
+                <span>OpenAI</span><span>Anthropic</span><span>AWS</span><span>Vercel</span><span>GitHub</span>
             </div>
-        </div>
-        <div class="hero-visual">
-            <!-- Background image serves as visual -->
-        </div>
-    </section>
-
-    <!-- ═══════════════════════════════════ CORE POSITIONING BAR ═══════════════════════════════════ -->
-    <div class="brand-bar" style="background: rgba(0, 229, 255, 0.02); border-color: rgba(0, 229, 255, 0.15);">
-        <p class="tagline" style="color: var(--accent-cyan);">Strategic alignment &nbsp;|&nbsp; Custom licensing models &nbsp;|&nbsp; Dev-to-dev support &nbsp;|&nbsp; Client referral co-marketing</p>
-    </div>
-
-    <!-- ═══════════════════════════════════ PARTNER TRACKS ═══════════════════════════════════ -->
-    <section id="partner-tracks" class="reveal">
-        <span class="section-tag" style="color: var(--accent-cyan); background: rgba(0, 229, 255, 0.05); border-color: rgba(0, 229, 255, 0.15);">Tracks</span>
-        <h2 class="section-title">Program Tracks & Alignment</h2>
-        <p class="section-subtitle">Select the integration pathway that aligns with your professional or business model.</p>
-
-        <div style="display: flex; flex-direction: column; gap: 1.5rem;">
-            <!-- Creator Track -->
-            <div class="feature-card glow-cyan" style="display: grid; grid-template-columns: auto 1fr; gap: 2rem; align-items: center;">
-                <div class="card-icon" style="background: rgba(0, 229, 255, 0.08); border-color: rgba(0, 229, 255, 0.12); color: var(--accent-cyan); width: 60px; height: 60px; font-size: 1.5rem; margin-bottom: 0;">
-                    🎬
-                </div>
-                <div>
-                    <h3 style="font-size: 1.25rem; margin-bottom: 0.25rem;">Creator Track</h3>
-                    <p style="color: var(--text-secondary); margin-bottom: 0.5rem;">For educators, video makers, and community builders sharing local AI setups or code playbooks.</p>
-                    <p style="font-size: 0.85rem; color: var(--accent-cyan); font-weight: 600;">BENEFITS: Direct brand sponsorships, multi-tiered commission bonuses, and priority beta software access.</p>
-                </div>
+        </section>
+        <section class="section">
+            <div class="cards-3">
+                <article class="mini-card"><h3>Integration partners</h3><p>Connect models, storage, automations, and deployment surfaces.</p><a href="mailto:partners@luxautomaton.com">Build with us</a></article>
+                <article class="mini-card"><h3>Agency partners</h3><p>Deliver Lux-powered workflows to clients with stronger proof and handoff.</p><a href="affiliate.html">Join affiliate path</a></article>
+                <article class="mini-card"><h3>Training partners</h3><p>Teach private AI coding systems with structured packs and examples.</p><a href="mailto:partners@luxautomaton.com">Talk to Lux</a></article>
             </div>
-
-            <!-- Consultant Track -->
-            <div class="feature-card glow-cyan" style="display: grid; grid-template-columns: auto 1fr; gap: 2rem; align-items: center;">
-                <div class="card-icon" style="background: rgba(0, 229, 255, 0.08); border-color: rgba(0, 229, 255, 0.12); color: var(--accent-cyan); width: 60px; height: 60px; font-size: 1.5rem; margin-bottom: 0;">
-                    💼
-                </div>
-                <div>
-                    <h3 style="font-size: 1.25rem; margin-bottom: 0.25rem;">Consultant Track</h3>
-                    <p style="color: var(--text-secondary); margin-bottom: 0.5rem;">For software, compliance, or operational consultants designing localized private infrastructures for businesses.</p>
-                    <p style="font-size: 0.85rem; color: var(--accent-cyan); font-weight: 600;">BENEFITS: Lead matching, private support lines, and dedicated integration documentation vaults.</p>
-                </div>
+        </section>
+        <section class="cta-band"><h2>Ready to build faster with Lux Coder Suite?</h2><p>Join thousands of developers and teams already shipping better software.</p><div><a class="btn btn-primary" href="download.html">Enter Suite</a></div></section>
+    </main>
+    <footer class="site-footer">
+        <div class="footer-grid">
+            <div>
+                <a class="brand footer-brand" href="index.html">
+                    <img src="lux-coder-logo.jpeg" alt="">
+                    <span>Lux Coder Suite</span>
+                </a>
+                <p>A private AI coding workspace from Lux Automaton. Build apps, dashboards, automations, and client systems with verified agent loops.</p>
             </div>
-
-            <!-- Agency Track -->
-            <div class="feature-card glow-cyan" style="display: grid; grid-template-columns: auto 1fr; gap: 2rem; align-items: center;">
-                <div class="card-icon" style="background: rgba(0, 229, 255, 0.08); border-color: rgba(0, 229, 255, 0.12); color: var(--accent-cyan); width: 60px; height: 60px; font-size: 1.5rem; margin-bottom: 0;">
-                    🏢
-                </div>
-                <div>
-                    <h3 style="font-size: 1.25rem; margin-bottom: 0.25rem;">Agency Track</h3>
-                    <p style="color: var(--text-secondary); margin-bottom: 0.5rem;">For full-service software development, workflow automation, or security agencies shipping products to clients.</p>
-                    <p style="font-size: 0.85rem; color: var(--accent-cyan); font-weight: 600;">BENEFITS: Co-branding, team training licenses, custom Success Pack options, and deep reseller/seat discounts.</p>
-                </div>
-            </div>
-
-            <!-- Local Business Track -->
-            <div class="feature-card glow-cyan" style="display: grid; grid-template-columns: auto 1fr; gap: 2rem; align-items: center;">
-                <div class="card-icon" style="background: rgba(0, 229, 255, 0.08); border-color: rgba(0, 229, 255, 0.12); color: var(--accent-cyan); width: 60px; height: 60px; font-size: 1.5rem; margin-bottom: 0;">
-                    🏪
-                </div>
-                <div>
-                    <h3 style="font-size: 1.25rem; margin-bottom: 0.25rem;">Local Business Track</h3>
-                    <p style="color: var(--text-secondary); margin-bottom: 0.5rem;">For physical shops, localized clinics, and studios looking to securely integrate local AI models and task systems.</p>
-                    <p style="font-size: 0.85rem; color: var(--accent-cyan); font-weight: 600;">BENEFITS: Custom templates, localization playbooks, and hardware deployment setup assistance.</p>
-                </div>
-            </div>
-
-            <!-- Technical Integrator Track -->
-            <div class="feature-card glow-cyan" style="display: grid; grid-template-columns: auto 1fr; gap: 2rem; align-items: center;">
-                <div class="card-icon" style="background: rgba(0, 229, 255, 0.08); border-color: rgba(0, 229, 255, 0.12); color: var(--accent-cyan); width: 60px; height: 60px; font-size: 1.5rem; margin-bottom: 0;">
-                    🛠️
-                </div>
-                <div>
-                    <h3 style="font-size: 1.25rem; margin-bottom: 0.25rem;">Technical Integrator Track</h3>
-                    <p style="color: var(--text-secondary); margin-bottom: 0.5rem;">For engineers and systems developers building tool connections, SDK wrappers, or extension forks.</p>
-                    <p style="font-size: 0.85rem; color: var(--accent-cyan); font-weight: 600;">BENEFITS: Source-code access permissions, early API specs, and dev-to-dev support channels.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ═══════════════════════════════════ APPLICATION FORM SECTION ═══════════════════════════════════ -->
-    <section id="partners-form-section" class="section-divider reveal">
-        <div style="text-align: center; margin-bottom: 3.5rem;">
-            <span class="section-tag" style="color: var(--accent-cyan); background: rgba(0, 229, 255, 0.05); border-color: rgba(0, 229, 255, 0.15);">Application</span>
-            <h2 class="section-title">Apply for Partner Status</h2>
-            <p class="section-subtitle" style="margin-left: auto; margin-right: auto;">Connect with us. We review all applications and follow up with qualified businesses within 3 business days.</p>
-        </div>
-
-        <div class="form-container" style="border-color: var(--border-active); box-shadow: var(--shadow-glow);">
-            <form id="partner-application-form">
-                <div class="form-row">
-                    <div class="form-field">
-                        <label class="form-label">Full Name</label>
-                        <input type="text" class="form-input" id="partner-name" required placeholder="e.g. Dana Lee">
-                    </div>
-                    <div class="form-field">
-                        <label class="form-label">Email Address</label>
-                        <input type="email" class="form-input" id="partner-email" required placeholder="e.g. contact@mybusiness.com">
-                    </div>
-                </div>
-
-                <div class="form-row">
-                    <div class="form-field">
-                        <label class="form-label">Business Name</label>
-                        <input type="text" class="form-input" id="partner-company" placeholder="e.g. Apex Tech Solutions">
-                    </div>
-                    <div class="form-field">
-                        <label class="form-label">Business Website</label>
-                        <input type="url" class="form-input" id="partner-website" placeholder="e.g. https://apextech.com">
-                    </div>
-                </div>
-
-                <div class="form-row">
-                    <div class="form-field">
-                        <label class="form-label">Partner Track</label>
-                        <select class="form-select" id="partner-track" required>
-                            <option value="" disabled selected>Select track...</option>
-                            <option value="creator">Creator Track</option>
-                            <option value="consultant">Consultant Track</option>
-                            <option value="agency">Agency Track</option>
-                            <option value="local">Local Business Track</option>
-                            <option value="technical">Technical Integrator Track</option>
-                        </select>
-                    </div>
-                    <div class="form-field">
-                        <label class="form-label">Monthly Client Volume</label>
-                        <select class="form-select" id="partner-volume" required>
-                            <option value="" disabled selected>Select client range...</option>
-                            <option value="under_5">Fewer than 5 clients / mo</option>
-                            <option value="5_20">5 - 20 clients / mo</option>
-                            <option value="above_20">More than 20 clients / mo</option>
-                            <option value="none">Not applicable (Creator/Technical)</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="form-field">
-                    <label class="form-label">Ecosystem Alignment & Integration Goals</label>
-                    <textarea class="form-textarea" id="partner-goals" required placeholder="Describe what you plan to build, resell, or implement with the Lux Coder Suite and why local-first AI is critical to your clients or workflow."></textarea>
-                </div>
-
-                <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1.5rem;">
-                    <input type="checkbox" id="partner-terms" required style="cursor: pointer; width: 16px; height: 16px; accent-color: var(--accent-cyan);">
-                    <label for="partner-terms" style="font-size: 0.82rem; color: var(--text-secondary); cursor: pointer; user-select: none;">
-                        I agree to the <a href="#" style="color: var(--accent-cyan); text-decoration: underline;">Partnership Agreement terms</a> and co-marketing guidelines.
-                    </label>
-                </div>
-
-                <button type="submit" class="btn btn-primary" style="width: 100%;">Submit Partner Application</button>
-            </form>
-            <div id="partner-success-msg" style="display: none; text-align: center; margin-top: 1.5rem; padding: 1.5rem; background: rgba(0, 229, 255, 0.08); border: 1px solid var(--accent-cyan); border-radius: var(--radius-sm); color: var(--text-primary);">
-                <p style="font-weight: 700; color: var(--accent-cyan); font-size: 1.1rem; margin-bottom: 0.5rem;">Application Sent Successfully!</p>
-                <p style="font-size: 0.88rem; color: var(--text-secondary);">Your application is under evaluation. A partnership director will review your business credentials and website and follow up via email.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- ═══════════════════════════════════ FOOTER ═══════════════════════════════════ -->
-    <footer>
-        <div class="footer-container">
-            <div class="footer-top">
-                <div class="footer-brand">
-                    <div class="footer-logo">
-                        <img src="lux-coder-logo.jpeg" alt="Lux Automaton">
-                        <span style="background: linear-gradient(135deg, #fff 40%, var(--accent-cyan)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Lux Automaton</span>
-                    </div>
-                    <p>Building private AI operating systems for sovereign builders, founders, and small businesses.</p>
-                </div>
-                <div class="footer-column">
-                    <h4>Products</h4>
-                    <ul>
-                        <li><a href="coder.html">Lux Coder</a></li>
-                        <li><a href="usb.html">Lux Agent USB</a></li>
+            <div>
+                <h3>Website</h3>
+                <ul><li><a href="coder.html">Lux Coder</a></li>
+                        <li><a href="features.html">Features</a></li>
+                        <li><a href="feature-lana-jarvis.html">LANA + Jarvis</a></li>
+                        <li><a href="feature-model-switcher.html">Model Switcher</a></li>
+                        <li><a href="feature-mindmap.html">3D Mindmap</a></li>
+                        <li><a href="feature-apps-built-preview.html">Apps Built Preview</a></li>
+                        <li><a href="feature-skills.html">Skills</a></li>
+                        <li><a href="feature-loops.html">Loops</a></li>
+                        <li><a href="comparison.html">Comparison</a></li>
+                        <li><a href="download.html">Download</a></li>
+                        <li><a href="pricing.html">Pricing</a></li>
+                        <li><a href="usb.html">Agent USB</a></li>
                         <li><a href="packs.html">Success Packs</a></li>
-                        <li><a href="pricing.html">Pricing Structure</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h4>Ecosystem</h4>
-                    <ul>
-                        <li><a href="partners.html">Partners Program</a></li>
-                        <li><a href="affiliate.html">Affiliate Rewards</a></li>
-                        <li><a href="license.html">License Activation</a></li>
-                        <li><a href="pricing.html#custom-setup">Custom Setup</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h4>Resources</h4>
-                    <ul>
-                        <li><a href="https://luxautomaton-ux.github.io/lux-agent-website/" target="_blank">Lux Agent Web</a></li>
-                        <li><a href="#">System Docs</a></li>
-                        <li><a href="#">API Reference</a></li>
-                        <li><a href="#">Support Center</a></li>
-                    </ul>
-                </div>
+                        <li><a href="license.html">License Lookup</a></li>
+                        <li><a href="affiliate.html">Affiliate</a></li>
+                        <li><a href="partners.html">Partners</a></li></ul>
             </div>
-            <div class="footer-bottom">
-                <p>© 2026 Lux Automaton. All rights reserved.</p>
-                <p>Build faster. Run smarter. Own your AI system.</p>
+            <div>
+                <h3>Actions</h3>
+                <ul>
+                    <li><a href="download.html">Download Suite</a></li>
+                    <li><a href="pricing.html">View Pricing</a></li>
+                    <li><a href="license.html">Lookup License</a></li>
+                    <li><a href="mailto:sales@luxautomaton.com">Contact Sales</a></li>
+                </ul>
             </div>
+        </div>
+        <div class="footer-bottom">
+            <span>Lux Automaton</span>
+            <span>Automate | Innovate | Accelerate</span>
         </div>
     </footer>
-
     <script src="script.js"></script>
 </body>
 </html>

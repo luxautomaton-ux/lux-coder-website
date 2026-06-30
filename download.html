@@ -3,644 +3,114 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Download | Lux Coder — Mac, Windows, Linux & VS Code Extension</title>
-    <meta name="description" content="Download Lux Coder Suite for macOS, Windows, Linux, or install the VS Code extension. One AI coding command center — every platform.">
+    <title>Download | Lux Coder Suite</title>
+    <meta name="description" content="Download Lux Coder Suite packages and get started with the private AI coding workspace.">
     <link rel="stylesheet" href="style.css">
     <link rel="icon" type="image/jpeg" href="lux-coder-logo.jpeg">
-    <!-- Open Graph -->
-    <meta property="og:title" content="Download Lux Coder — Every Platform">
-    <meta property="og:description" content="Download the Lux Coder desktop app for Mac, Windows, or Linux. Or install the VS Code extension directly.">
+    <meta property="og:title" content="Download | Lux Coder Suite">
+    <meta property="og:description" content="Download Lux Coder Suite packages and get started with the private AI coding workspace.">
     <meta property="og:image" content="lux-coder-share.png">
     <meta property="og:type" content="website">
-    <style>
-        .sharp-edge { border-radius: 2px !important; }
-
-        /* ── Platform Cards ── */
-        .dl-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1.5rem;
-            max-width: 1100px;
-            margin: 0 auto;
-        }
-        @media (max-width: 768px) {
-            .dl-grid { grid-template-columns: 1fr; }
-        }
-
-        .dl-card {
-            background: rgba(13, 17, 28, 0.65);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            padding: 2.5rem 2rem;
-            text-align: center;
-            transition: border-color 0.35s, box-shadow 0.35s, transform 0.35s;
-            position: relative;
-            overflow: hidden;
-        }
-        .dl-card::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, var(--accent-cyan), transparent);
-            opacity: 0;
-            transition: opacity 0.4s;
-        }
-        .dl-card:hover {
-            border-color: rgba(0, 229, 255, 0.2);
-            box-shadow: 0 0 40px rgba(0, 229, 255, 0.06);
-            transform: translateY(-4px);
-        }
-        .dl-card:hover::before {
-            opacity: 1;
-        }
-
-        /* Platform icons — SVG inline */
-        .dl-icon {
-            width: 64px;
-            height: 64px;
-            margin: 0 auto 1.25rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .dl-icon svg {
-            width: 56px;
-            height: 56px;
-        }
-
-        .dl-card h3 {
-            font-size: 1.35rem;
-            font-weight: 800;
-            color: #fff;
-            margin-bottom: 0.4rem;
-        }
-        .dl-card .dl-subtitle {
-            font-size: 0.78rem;
-            font-family: var(--font-mono);
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            color: var(--text-muted);
-            margin-bottom: 1.25rem;
-        }
-        .dl-card .dl-meta {
-            font-size: 0.78rem;
-            color: var(--text-secondary);
-            line-height: 1.7;
-            margin-bottom: 1.5rem;
-        }
-        .dl-card .dl-meta strong {
-            color: var(--text-primary);
-        }
-
-        .dl-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.75rem 1.75rem;
-            font-size: 0.85rem;
-            font-weight: 700;
-            font-family: var(--font-sans);
-            text-decoration: none;
-            color: #06080d;
-            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue));
-            border: none;
-            cursor: pointer;
-            transition: opacity 0.25s, transform 0.25s;
-            letter-spacing: 0.02em;
-        }
-        .dl-btn:hover {
-            opacity: 0.9;
-            transform: scale(1.03);
-        }
-        .dl-btn-secondary {
-            background: transparent;
-            border: 1px solid rgba(0, 229, 255, 0.25);
-            color: var(--accent-cyan);
-            margin-top: 0.75rem;
-        }
-        .dl-btn-secondary:hover {
-            background: rgba(0, 229, 255, 0.05);
-            border-color: var(--accent-cyan);
-        }
-
-        .dl-badge {
-            display: inline-block;
-            padding: 0.2rem 0.65rem;
-            font-size: 0.65rem;
-            font-family: var(--font-mono);
-            text-transform: uppercase;
-            letter-spacing: 0.06em;
-            border-radius: 2px;
-            margin-bottom: 1rem;
-        }
-        .badge-new {
-            background: rgba(0, 230, 118, 0.08);
-            border: 1px solid rgba(0, 230, 118, 0.2);
-            color: var(--accent-green);
-        }
-        .badge-stable {
-            background: rgba(0, 229, 255, 0.06);
-            border: 1px solid rgba(0, 229, 255, 0.15);
-            color: var(--accent-cyan);
-        }
-        .badge-ext {
-            background: rgba(41, 121, 255, 0.06);
-            border: 1px solid rgba(41, 121, 255, 0.15);
-            color: var(--accent-blue);
-        }
-        .badge-coming {
-            background: rgba(255, 145, 0, 0.06);
-            border: 1px solid rgba(255, 145, 0, 0.15);
-            color: var(--accent-orange);
-        }
-
-        /* ── Requirements table ── */
-        .req-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1rem;
-            max-width: 1100px;
-            margin: 0 auto;
-        }
-        @media (max-width: 1024px) {
-            .req-grid { grid-template-columns: repeat(2, 1fr); }
-        }
-        @media (max-width: 576px) {
-            .req-grid { grid-template-columns: 1fr; }
-        }
-        .req-item {
-            background: rgba(13, 17, 28, 0.5);
-            border: 1px solid rgba(255, 255, 255, 0.04);
-            padding: 1.5rem;
-        }
-        .req-item h4 {
-            font-size: 0.85rem;
-            font-weight: 700;
-            color: #fff;
-            margin-bottom: 0.75rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        .req-item ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        .req-item li {
-            font-size: 0.78rem;
-            color: var(--text-secondary);
-            line-height: 1.8;
-            padding-left: 1rem;
-            position: relative;
-        }
-        .req-item li::before {
-            content: '›';
-            position: absolute;
-            left: 0;
-            color: var(--accent-cyan);
-            font-weight: 700;
-        }
-
-        /* ── Install Instructions ── */
-        .install-steps {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.25rem;
-            max-width: 900px;
-            margin: 2rem auto 0;
-        }
-        @media (max-width: 768px) {
-            .install-steps { grid-template-columns: 1fr; }
-        }
-        .install-step {
-            background: rgba(13, 17, 28, 0.5);
-            border: 1px solid rgba(255, 255, 255, 0.04);
-            padding: 1.5rem;
-            text-align: center;
-        }
-        .install-step .step-num {
-            font-family: var(--font-mono);
-            font-size: 1.8rem;
-            font-weight: 800;
-            color: var(--accent-cyan);
-            margin-bottom: 0.5rem;
-        }
-        .install-step h4 {
-            font-size: 0.9rem;
-            font-weight: 700;
-            color: #fff;
-            margin-bottom: 0.4rem;
-        }
-        .install-step p {
-            font-size: 0.78rem;
-            color: var(--text-secondary);
-            line-height: 1.6;
-        }
-        .install-step code {
-            display: block;
-            margin-top: 0.75rem;
-            padding: 0.5rem 0.75rem;
-            background: rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            font-family: var(--font-mono);
-            font-size: 0.72rem;
-            color: var(--accent-cyan);
-            word-break: break-all;
-            border-radius: 2px;
-            text-align: left;
-        }
-    </style>
 </head>
-<body>
-
-    <!-- ═══════════════════════════════════ HEADER ═══════════════════════════════════ -->
+<body data-page="download">
     <header id="main-header">
-        <div class="nav-container">
-            <a href="index.html" class="logo">
-                <img src="lux-coder-logo.jpeg" alt="Lux Coder Logo" class="sharp-edge" style="border-radius: 4px;">
-                <span>Lux Coder</span>
+        <div class="nav-shell">
+            <a class="brand" href="index.html" aria-label="Lux Coder Suite home">
+                <img src="lux-coder-logo.jpeg" alt="">
+                <span>Lux Coder Suite</span>
             </a>
-            <ul class="nav-links">
-                <li><a href="features.html">Features</a></li>
-                <li><a href="comparison.html">Comparison</a></li>
-                <li><a href="index.html#pricing">Pricing</a></li>
-                <li><a href="download.html" style="color: var(--accent-cyan);">Download</a></li>
-                <li><a href="index.html#agent-integration">Lux Agent</a></li>
-                <li><a href="license.html">License Lookup</a></li>
-                <li><a href="affiliate.html">Affiliate</a></li>
-            </ul>
-            <a href="download.html" class="nav-cta sharp-edge" style="text-decoration: none;">Download</a>
-            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
+            <nav aria-label="Primary navigation">
+                <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+                    <span></span><span></span><span></span>
+                </button>
+                <ul class="nav-links" id="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="features.html">Features</a></li>
+                    <li><a href="comparison.html">Compare</a></li>
+                    <li><a href="download.html" aria-current="page">Download</a></li>
+                    <li><a href="pricing.html">Pricing</a></li>
+                    <li><a href="usb.html">Agent USB</a></li>
+                    <li><a href="partners.html">Partners</a></li>
+                </ul>
+            </nav>
+            <a class="nav-cta" href="download.html">Get Suite</a>
         </div>
     </header>
+    <main>
 
-    <!-- ═══════════════════════════════════ HERO ═══════════════════════════════════ -->
-    <section class="page-hero reveal" style="text-align: center; padding-top: 10rem; padding-bottom: 4rem;">
-        <span class="section-tag" style="color: var(--accent-cyan); background: rgba(0, 229, 255, 0.05); border-color: rgba(0, 229, 255, 0.15);">Download Center</span>
-        <h1 class="section-title" style="font-size: 3rem; margin-bottom: 0.75rem;">Get Lux Coder on every platform.</h1>
-        <p class="section-subtitle" style="max-width: 640px; margin: 0 auto 1.5rem;">Lux Coder is a premium AI coding suite inside VS Code. Start with a 7-day trial, activate your license, and build with model freedom, memory, agents, exports, and Lux Agent integration.</p>
-        <div style="display: flex; gap: 0.75rem; justify-content: center; align-items: center; flex-wrap: wrap;">
-            <span class="dl-version-badge">v2.3.0</span>
-            <span style="font-size: 0.78rem; color: var(--text-muted); font-family: var(--font-mono);">RELEASED JUNE 18, 2026</span>
-        </div>
-    </section>
-
-    <!-- ═══════════════════════════════════ TRIAL DOWNLOAD ═══════════════════════════════════ -->
-    <section class="section-divider reveal" style="padding-top: 2rem;">
-        <div class="dl-section-header">
-            <div class="dl-section-icon" style="background: rgba(0, 230, 118, 0.1); border: 1px solid rgba(0, 230, 118, 0.2);">🆓</div>
-            <h2 style="color: var(--accent-green);">Trial Download</h2>
-        </div>
-        <p style="text-align: center; max-width: 560px; margin: 0 auto 2rem; font-size: 0.95rem; color: var(--text-secondary);">Start your 7-day free trial. Solo-level access for 7 days — no credit card required to download.</p>
-
-        <div class="dl-grid" style="grid-template-columns: repeat(3, 1fr); max-width: 900px;">
-            <!-- macOS Trial -->
-            <div class="dl-card sharp-edge" style="border-color: rgba(0, 230, 118, 0.12);">
-                <div class="dl-badge badge-new">Trial</div>
-                <div class="dl-icon">
-                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M18.71 19.5C17.88 20.74 17 21.95 15.66 21.97C14.32 22 13.89 21.18 12.37 21.18C10.84 21.18 10.37 21.95 9.1 22C7.79 22.05 6.8 20.68 5.96 19.47C4.25 16.56 2.93 11.3 4.7 7.72C5.57 5.94 7.36 4.82 9.3 4.8C10.56 4.77 11.76 5.67 12.53 5.67C13.3 5.67 14.78 4.58 16.3 4.75C16.97 4.78 18.73 5.02 19.88 6.67C19.79 6.73 17.72 7.94 17.74 10.47C17.77 13.5 20.37 14.45 20.41 14.47C20.37 14.54 19.97 15.93 18.71 19.5ZM13 3.5C13.73 2.67 14.94 2.04 15.94 2C16.07 3.17 15.6 4.35 14.9 5.19C14.21 6.04 13.07 6.7 11.95 6.61C11.8 5.46 12.36 4.26 13 3.5Z" fill="#ffffff"/>
-                    </svg>
-                </div>
-                <h3>macOS</h3>
-                <div class="dl-subtitle">Apple Silicon & Intel</div>
-                <a href="https://github.com/luxautomaton-ux/lux-coder-website/releases/download/v2.3.0/Lux_Coder_Latest.dmg" download class="dl-btn sharp-edge">⬇ Download .dmg</a>
+        <section class="page-header">
+            <div>
+                <h1>Download Lux Coder Suite.</h1>
+                <p>Choose your platform package and get started in minutes. All builds are designed for secure, aligned, and verified work.</p>
             </div>
-
-            <!-- Windows Trial -->
-            <div class="dl-card sharp-edge" style="border-color: rgba(0, 230, 118, 0.12);">
-                <div class="dl-badge badge-new">Trial</div>
-                <div class="dl-icon">
-                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M3 12V6.5L10.5 5.5V12H3ZM3 12.5V18L10.5 19V12.5H3ZM11.5 5.35L21 3.5V12H11.5V5.35ZM11.5 12.5V19.15L21 21V12.5H11.5Z" fill="#ffffff"/>
-                    </svg>
-                </div>
-                <h3>Windows</h3>
-                <div class="dl-subtitle">Windows 10 / 11</div>
-                <a href="https://github.com/luxautomaton-ux/lux-coder-website/releases/download/v2.3.0/Lux_Coder_Setup.exe" download class="dl-btn sharp-edge">⬇ Download .exe</a>
+            <aside class="context-panel">
+                <h2>System requirements</h2>
+                <ul><li>Modern macOS, Windows, or Linux</li><li>8GB RAM minimum</li><li>4GB disk space</li><li>Internet for model providers</li></ul>
+            </aside>
+        </section>
+        <section class="section">
+            <div class="download-grid">
+                <article class="download-card reveal"><h2>macOS</h2><p>Universal build for Intel and Apple Silicon.</p><a class="btn btn-primary" href="lux-coder-suite-2.3.0.vsix" download>Download VSIX</a><small>Version 2.3.0</small></article>
+                <article class="download-card reveal"><h2>Windows</h2><p>Use the VSIX package or request the desktop installer.</p><a class="btn btn-primary" href="lux-coder-suite-2.3.0.vsix" download>Download VSIX</a><small>Version 2.3.0</small></article>
+                <article class="download-card reveal"><h2>Linux</h2><p>Install the extension package on compatible editors.</p><a class="btn btn-primary" href="lux-coder-suite-2.3.0.vsix" download>Download VSIX</a><small>Version 2.3.0</small></article>
             </div>
-
-            <!-- VS Code Extension Trial -->
-            <div class="dl-card sharp-edge" style="border-color: rgba(0, 230, 118, 0.12);">
-                <div class="dl-badge badge-new">Trial</div>
-                <div class="dl-icon">
-                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M17.03 2L9.5 8.97L4.85 5.57L2 6.93V17.07L4.85 18.43L9.5 15.03L17.03 22L22 19.93V4.07L17.03 2ZM4.5 15.77V8.23L7.2 10.5V13.5L4.5 15.77ZM17 18.07L10.5 12L17 5.93V18.07Z" fill="#2979FF"/>
-                    </svg>
-                </div>
-                <h3>VS Code Extension</h3>
-                <div class="dl-subtitle">Lightweight Install</div>
-                <a href="https://github.com/luxautomaton-ux/lux-coder-website/releases/download/v2.3.0/lux-coder-suite-2.3.0.vsix" download class="dl-btn sharp-edge" style="background: linear-gradient(135deg, #2979FF, var(--accent-cyan));">⬇ Download .vsix</a>
+        </section>
+        <section class="section split-section">
+            <div class="command-card">
+                <h2>Prefer CLI?</h2>
+                <p>Install the lightweight command package when you want terminal-first workflows.</p>
+                <div class="copy-line"><code>npm i -g lux-coder-suite</code><button class="copy-btn" data-copy="npm i -g lux-coder-suite">Copy</button></div>
             </div>
-        </div>
-        <p class="dl-section-note">Trial requires account creation. Solo-level access for 7 days.</p>
-    </section>
-
-    <!-- ═══════════════════════════════════ PAID DOWNLOAD ═══════════════════════════════════ -->
-    <section class="section-divider reveal" style="padding-top: 2rem;">
-        <div class="dl-section-header">
-            <div class="dl-section-icon" style="background: rgba(0, 229, 255, 0.1); border: 1px solid rgba(0, 229, 255, 0.2);">🔑</div>
-            <h2 style="color: var(--accent-cyan);">Paid Download</h2>
-        </div>
-        <p style="text-align: center; max-width: 560px; margin: 0 auto 2rem; font-size: 0.95rem; color: var(--text-secondary);">Already subscribed? Download the latest version.</p>
-
-        <div class="dl-grid" style="grid-template-columns: repeat(3, 1fr); max-width: 900px;">
-            <!-- macOS Paid -->
-            <div class="dl-card sharp-edge">
-                <div class="dl-badge badge-stable">Stable v2.3.0</div>
-                <div class="dl-icon">
-                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M18.71 19.5C17.88 20.74 17 21.95 15.66 21.97C14.32 22 13.89 21.18 12.37 21.18C10.84 21.18 10.37 21.95 9.1 22C7.79 22.05 6.8 20.68 5.96 19.47C4.25 16.56 2.93 11.3 4.7 7.72C5.57 5.94 7.36 4.82 9.3 4.8C10.56 4.77 11.76 5.67 12.53 5.67C13.3 5.67 14.78 4.58 16.3 4.75C16.97 4.78 18.73 5.02 19.88 6.67C19.79 6.73 17.72 7.94 17.74 10.47C17.77 13.5 20.37 14.45 20.41 14.47C20.37 14.54 19.97 15.93 18.71 19.5ZM13 3.5C13.73 2.67 14.94 2.04 15.94 2C16.07 3.17 15.6 4.35 14.9 5.19C14.21 6.04 13.07 6.7 11.95 6.61C11.8 5.46 12.36 4.26 13 3.5Z" fill="#ffffff"/>
-                    </svg>
-                </div>
-                <h3>macOS</h3>
-                <div class="dl-subtitle">Apple Silicon & Intel</div>
-                <div class="dl-meta">
-                    <strong>Lux_Coder.dmg</strong> · 116 MB<br>
-                    macOS 12 Monterey or later<br>
-                    Universal binary (ARM + x64)
-                </div>
-                <a href="https://github.com/luxautomaton-ux/lux-coder-website/releases/download/v2.3.0/Lux_Coder_Latest.dmg" download class="dl-btn sharp-edge">⬇ Download for Mac</a>
+            <div class="command-card">
+                <h2>Install notes.</h2>
+                <ul class="check-list"><li>Keep your provider keys private</li><li>Verify extension permissions</li><li>Run a smoke test before production work</li><li>Use license lookup for seat status</li></ul>
             </div>
-
-            <!-- Windows Paid -->
-            <div class="dl-card sharp-edge">
-                <div class="dl-badge badge-stable">Stable v2.3.0</div>
-                <div class="dl-icon">
-                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M3 12V6.5L10.5 5.5V12H3ZM3 12.5V18L10.5 19V12.5H3ZM11.5 5.35L21 3.5V12H11.5V5.35ZM11.5 12.5V19.15L21 21V12.5H11.5Z" fill="#ffffff"/>
-                    </svg>
-                </div>
-                <h3>Windows</h3>
-                <div class="dl-subtitle">Windows 10 / 11</div>
-                <div class="dl-meta">
-                    <strong>Lux_Coder_Setup.exe</strong> · 98 MB<br>
-                    Windows 10 (64-bit) or later<br>
-                    Electron desktop application
-                </div>
-                <a href="https://github.com/luxautomaton-ux/lux-coder-website/releases/download/v2.3.0/Lux_Coder_Setup.exe" download class="dl-btn sharp-edge">⬇ Download for Windows</a>
+        </section>
+        <section class="cta-band"><h2>Need help choosing?</h2><p>Compare plans or ask for a custom setup path.</p><div><a class="btn btn-secondary" href="pricing.html">Compare Plans</a><a class="btn btn-primary" href="mailto:sales@luxautomaton.com">Contact Sales</a></div></section>
+    </main>
+    <footer class="site-footer">
+        <div class="footer-grid">
+            <div>
+                <a class="brand footer-brand" href="index.html">
+                    <img src="lux-coder-logo.jpeg" alt="">
+                    <span>Lux Coder Suite</span>
+                </a>
+                <p>A private AI coding workspace from Lux Automaton. Build apps, dashboards, automations, and client systems with verified agent loops.</p>
             </div>
-
-            <!-- VS Code Extension Paid -->
-            <div class="dl-card sharp-edge" style="border-color: rgba(41, 121, 255, 0.12);">
-                <div class="dl-badge badge-ext">Extension v2.3.0</div>
-                <div class="dl-icon">
-                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M17.03 2L9.5 8.97L4.85 5.57L2 6.93V17.07L4.85 18.43L9.5 15.03L17.03 22L22 19.93V4.07L17.03 2ZM4.5 15.77V8.23L7.2 10.5V13.5L4.5 15.77ZM17 18.07L10.5 12L17 5.93V18.07Z" fill="#2979FF"/>
-                    </svg>
-                </div>
-                <h3>VS Code Extension</h3>
-                <div class="dl-subtitle">Lightweight Install</div>
-                <div class="dl-meta">
-                    <strong>lux-coder-suite-2.3.0.vsix</strong> · 478 KB<br>
-                    VS Code 1.85+ required<br>
-                    Install directly into your editor
-                </div>
-                <a href="https://github.com/luxautomaton-ux/lux-coder-website/releases/download/v2.3.0/lux-coder-suite-2.3.0.vsix" download class="dl-btn sharp-edge" style="background: linear-gradient(135deg, #2979FF, var(--accent-cyan));">⬇ Download .vsix</a>
-                <br>
-                <div style="margin-top: 0.75rem;">
-                    <span style="font-size: 0.72rem; color: var(--text-muted); font-family: var(--font-mono);">OR INSTALL VIA CLI:</span>
-                    <code style="display: block; margin-top: 0.4rem; padding: 0.45rem 0.75rem; background: rgba(0, 0, 0, 0.3); border: 1px solid rgba(255, 255, 255, 0.06); font-family: var(--font-mono); font-size: 0.72rem; color: var(--accent-cyan); border-radius: 2px; word-break: break-all;">code --install-extension lux-coder-suite-2.3.0.vsix</code>
-                </div>
-            </div>
-        </div>
-        <p class="dl-section-note">Enter your license key after installation.</p>
-    </section>
-
-    <!-- ═══════════════════════════════════ INSTALL STEPS ═══════════════════════════════════ -->
-    <section class="section-divider reveal" style="text-align: center;">
-        <span class="section-tag" style="color: var(--accent-green); background: rgba(0, 230, 118, 0.05); border-color: rgba(0, 230, 118, 0.15);">Quick Start</span>
-        <h2 class="section-title" style="font-size: 2rem;">Up and running in 3 steps.</h2>
-
-        <div class="install-steps">
-            <div class="install-step sharp-edge">
-                <div class="step-num">01</div>
-                <h4>Download & Install</h4>
-                <p>Grab the desktop app for your OS or install the VS Code extension.</p>
-                <code>// Mac: Open .dmg → Drag to Apps
-// Win: Run .exe installer
-// VS Code: Install .vsix</code>
-            </div>
-            <div class="install-step sharp-edge">
-                <div class="step-num">02</div>
-                <h4>Activate License</h4>
-                <p>Enter your license key or start a 7-day free trial. Add your API keys from any provider.</p>
-                <code>Settings → License → Enter Key
-// Or start 7-day trial
-// Then: API Switcher → Add Key</code>
-            </div>
-            <div class="install-step sharp-edge">
-                <div class="step-num">03</div>
-                <h4>Start Building</h4>
-                <p>Open any project, select your model, and start coding with your AI command center.</p>
-                <code>Command Center → New Chat
-// Your first session is saved
-// Memory wiki auto-generates</code>
-            </div>
-        </div>
-    </section>
-
-    <!-- ═══════════════════════════════════ SYSTEM REQUIREMENTS ═══════════════════════════════════ -->
-    <section class="section-divider reveal" style="text-align: center;">
-        <span class="section-tag" style="color: var(--accent-cyan); background: rgba(0, 229, 255, 0.05); border-color: rgba(0, 229, 255, 0.15);">Specs</span>
-        <h2 class="section-title" style="font-size: 2rem;">System Requirements</h2>
-
-        <div class="req-grid" style="margin-top: 2rem;">
-            <div class="req-item sharp-edge">
-                <h4>🍎 macOS</h4>
-                <ul>
-                    <li>macOS 12 Monterey+</li>
-                    <li>Apple Silicon or Intel</li>
-                    <li>4 GB RAM minimum</li>
-                    <li>200 MB disk space</li>
-                </ul>
-            </div>
-            <div class="req-item sharp-edge">
-                <h4>🪟 Windows</h4>
-                <ul>
-                    <li>Windows 10/11 (64-bit)</li>
-                    <li>Intel or AMD processor</li>
-                    <li>4 GB RAM minimum</li>
-                    <li>200 MB disk space</li>
-                </ul>
-            </div>
-            <div class="req-item sharp-edge">
-                <h4>🐧 Linux</h4>
-                <ul>
-                    <li>Ubuntu 22.04+ / Debian 12+</li>
-                    <li>x86_64 architecture</li>
-                    <li>4 GB RAM minimum</li>
-                    <li>.deb or .AppImage format</li>
-                </ul>
-            </div>
-            <div class="req-item sharp-edge">
-                <h4 style="color: #2979FF;">⟨/⟩ VS Code Extension</h4>
-                <ul>
-                    <li>VS Code 1.85+</li>
-                    <li>Any OS with VS Code</li>
-                    <li>Node.js 18+ (for tools)</li>
-                    <li>473 KB install size</li>
-                </ul>
-            </div>
-        </div>
-    </section>
-
-    <!-- ═══════════════════════════════════ VERSION HISTORY ═══════════════════════════════════ -->
-    <section class="section-divider reveal" style="text-align: center;">
-        <span class="section-tag" style="color: var(--accent-green); background: rgba(0, 230, 118, 0.05); border-color: rgba(0, 230, 118, 0.15);">Changelog</span>
-        <h2 class="section-title" style="font-size: 2rem;">Version History</h2>
-
-        <div style="max-width: 700px; margin: 2rem auto 0; text-align: left;">
-            <!-- v2.3.0 -->
-            <div class="sharp-edge" style="background: rgba(13, 17, 28, 0.6); border: 1px solid rgba(0, 229, 255, 0.2); padding: 1.5rem 1.75rem; margin-bottom: 1rem;">
-                <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.75rem;">
-                    <div>
-                        <span style="font-size: 1.1rem; font-weight: 800; color: #fff;">v2.3.0</span>
-                        <span class="dl-badge badge-new" style="margin-left: 0.5rem; margin-bottom: 0;">Latest</span>
-                    </div>
-                    <span style="font-size: 0.72rem; font-family: var(--font-mono); color: var(--text-muted);">JUNE 18, 2026</span>
-                </div>
-                <ul style="list-style: none; padding: 0; margin: 0;">
-                    <li style="font-size: 0.82rem; color: var(--text-secondary); line-height: 1.9; padding-left: 1.25rem; position: relative;"><span style="position: absolute; left: 0; color: var(--accent-cyan);">⚡</span> Major performance fix: eliminated duplicate HTTP requests during agent runs</li>
-                    <li style="font-size: 0.82rem; color: var(--text-secondary); line-height: 1.9; padding-left: 1.25rem; position: relative;"><span style="position: absolute; left: 0; color: var(--accent-cyan);">⚡</span> SSE event debouncing — rapid tool-call events now collapsed into single query refresh</li>
-                    <li style="font-size: 0.82rem; color: var(--text-secondary); line-height: 1.9; padding-left: 1.25rem; position: relative;"><span style="position: absolute; left: 0; color: var(--accent-cyan);">⚡</span> Added staleTime caching — no more refetches on window focus</li>
-                    <li style="font-size: 0.82rem; color: var(--text-secondary); line-height: 1.9; padding-left: 1.25rem; position: relative;"><span style="position: absolute; left: 0; color: var(--accent-cyan);">⚡</span> Context token display now computed client-side (no extra server round-trip)</li>
-                </ul>
-            </div>
-            <!-- v2.2.0 -->
-            <div class="sharp-edge" style="background: rgba(13, 17, 28, 0.6); border: 1px solid rgba(0, 230, 118, 0.15); padding: 1.5rem 1.75rem; margin-bottom: 1rem;">
-                <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.75rem;">
-                    <div>
-                        <span style="font-size: 1.1rem; font-weight: 800; color: #fff;">v2.2.0</span>
-                        <span class="dl-badge badge-new" style="margin-left: 0.5rem; margin-bottom: 0;">Latest</span>
-                    </div>
-                    <span style="font-size: 0.72rem; font-family: var(--font-mono); color: var(--text-muted);">JUNE 17, 2026</span>
-                </div>
-                <ul style="list-style: none; padding: 0; margin: 0;">
-                    <li style="font-size: 0.82rem; color: var(--text-secondary); line-height: 1.9; padding-left: 1.25rem; position: relative;"><span style="position: absolute; left: 0; color: var(--accent-green);">+</span> License activation and 7-day free trial system</li>
-                    <li style="font-size: 0.82rem; color: var(--text-secondary); line-height: 1.9; padding-left: 1.25rem; position: relative;"><span style="position: absolute; left: 0; color: var(--accent-green);">+</span> Stripe Checkout integration for subscriptions</li>
-                    <li style="font-size: 0.82rem; color: var(--text-secondary); line-height: 1.9; padding-left: 1.25rem; position: relative;"><span style="position: absolute; left: 0; color: var(--accent-green);">+</span> Monthly and annual billing toggle</li>
-                    <li style="font-size: 0.82rem; color: var(--text-secondary); line-height: 1.9; padding-left: 1.25rem; position: relative;"><span style="position: absolute; left: 0; color: var(--accent-green);">+</span> Restructured download center with trial/paid sections</li>
-                    <li style="font-size: 0.82rem; color: var(--text-secondary); line-height: 1.9; padding-left: 1.25rem; position: relative;"><span style="position: absolute; left: 0; color: var(--accent-green);">+</span> Updated pricing across all pages</li>
-                </ul>
-            </div>
-
-            <!-- v2.1.0 -->
-            <div class="sharp-edge" style="background: rgba(13, 17, 28, 0.4); border: 1px solid rgba(255, 255, 255, 0.04); padding: 1.5rem 1.75rem; margin-bottom: 1rem;">
-                <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.75rem;">
-                    <div>
-                        <span style="font-size: 1.1rem; font-weight: 800; color: #fff;">v2.1.0</span>
-                    </div>
-                    <span style="font-size: 0.72rem; font-family: var(--font-mono); color: var(--text-muted);">JUNE 17, 2026</span>
-                </div>
-                <ul style="list-style: none; padding: 0; margin: 0;">
-                    <li style="font-size: 0.82rem; color: var(--text-secondary); line-height: 1.9; padding-left: 1.25rem; position: relative;"><span style="position: absolute; left: 0; color: var(--accent-cyan);">+</span> VS Code extension (.vsix) now available</li>
-                    <li style="font-size: 0.82rem; color: var(--text-secondary); line-height: 1.9; padding-left: 1.25rem; position: relative;"><span style="position: absolute; left: 0; color: var(--accent-cyan);">+</span> Updated macOS build with latest patches</li>
-                    <li style="font-size: 0.82rem; color: var(--text-secondary); line-height: 1.9; padding-left: 1.25rem; position: relative;"><span style="position: absolute; left: 0; color: var(--accent-cyan);">+</span> Multi-model API switcher improvements</li>
-                    <li style="font-size: 0.82rem; color: var(--text-secondary); line-height: 1.9; padding-left: 1.25rem; position: relative;"><span style="position: absolute; left: 0; color: var(--accent-cyan);">+</span> 36+ built-in skills library</li>
-                    <li style="font-size: 0.82rem; color: var(--text-secondary); line-height: 1.9; padding-left: 1.25rem; position: relative;"><span style="position: absolute; left: 0; color: var(--accent-cyan);">+</span> Lux Agent integration enhancements</li>
-                </ul>
-            </div>
-
-            <!-- v2.0.0 -->
-            <div class="sharp-edge" style="background: rgba(13, 17, 28, 0.4); border: 1px solid rgba(255, 255, 255, 0.04); padding: 1.5rem 1.75rem; margin-bottom: 1rem;">
-                <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.75rem;">
-                    <div>
-                        <span style="font-size: 1.1rem; font-weight: 800; color: #fff;">v2.0.0</span>
-                    </div>
-                    <span style="font-size: 0.72rem; font-family: var(--font-mono); color: var(--text-muted);">JUNE 7, 2026</span>
-                </div>
-                <ul style="list-style: none; padding: 0; margin: 0;">
-                    <li style="font-size: 0.82rem; color: var(--text-secondary); line-height: 1.9; padding-left: 1.25rem; position: relative;"><span style="position: absolute; left: 0; color: var(--accent-cyan);">+</span> Initial Lux Coder Suite release</li>
-                    <li style="font-size: 0.82rem; color: var(--text-secondary); line-height: 1.9; padding-left: 1.25rem; position: relative;"><span style="position: absolute; left: 0; color: var(--accent-cyan);">+</span> macOS (.dmg) and Windows (.exe) desktop apps</li>
-                    <li style="font-size: 0.82rem; color: var(--text-secondary); line-height: 1.9; padding-left: 1.25rem; position: relative;"><span style="position: absolute; left: 0; color: var(--accent-cyan);">+</span> 16 specialist coding agents</li>
-                    <li style="font-size: 0.82rem; color: var(--text-secondary); line-height: 1.9; padding-left: 1.25rem; position: relative;"><span style="position: absolute; left: 0; color: var(--accent-cyan);">+</span> Memory wiki and saved sessions</li>
-                    <li style="font-size: 0.82rem; color: var(--text-secondary); line-height: 1.9; padding-left: 1.25rem; position: relative;"><span style="position: absolute; left: 0; color: var(--accent-cyan);">+</span> Branded PDF/screenshot exports</li>
-                </ul>
-            </div>
-
-            <!-- v1.0 -->
-            <div class="sharp-edge" style="background: rgba(13, 17, 28, 0.3); border: 1px solid rgba(255, 255, 255, 0.03); padding: 1.5rem 1.75rem;">
-                <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.75rem;">
-                    <div>
-                        <span style="font-size: 1.1rem; font-weight: 800; color: var(--text-muted);">v1.0.0</span>
-                        <span style="font-size: 0.65rem; font-family: var(--font-mono); color: var(--text-muted); margin-left: 0.5rem;">LEGACY</span>
-                    </div>
-                    <span style="font-size: 0.72rem; font-family: var(--font-mono); color: var(--text-muted);">JUNE 2026</span>
-                </div>
-                <ul style="list-style: none; padding: 0; margin: 0;">
-                    <li style="font-size: 0.82rem; color: var(--text-muted); line-height: 1.9; padding-left: 1.25rem; position: relative;"><span style="position: absolute; left: 0; color: var(--text-dim);">+</span> Initial desktop app prototype</li>
-                    <li style="font-size: 0.82rem; color: var(--text-muted); line-height: 1.9; padding-left: 1.25rem; position: relative;"><span style="position: absolute; left: 0; color: var(--text-dim);">+</span> Basic chat interface and model switching</li>
-                </ul>
-            </div>
-        </div>
-    </section>
-
-    <!-- ═══════════════════════════════════ CTA ═══════════════════════════════════ -->
-    <section class="reveal" style="text-align: center; padding: 5rem 1.5rem;">
-        <h2 class="section-title" style="font-size: 2.4rem; margin-bottom: 0.75rem;">Ready to build?</h2>
-        <p class="section-subtitle" style="max-width: 500px; margin: 0 auto 2rem;">Pick your platform, bring your keys, and start shipping software from the most powerful AI coding command center available.</p>
-        <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-            <a href="index.html#pricing" class="btn btn-primary sharp-edge" style="text-decoration: none; padding: 0.85rem 2rem;">View Pricing Plans</a>
-            <a href="features.html" class="btn btn-secondary sharp-edge" style="text-decoration: none; padding: 0.85rem 2rem;">Explore Features</a>
-        </div>
-        <p style="font-size: 0.78rem; color: var(--text-muted); margin-top: 1.5rem; font-family: var(--font-mono);">
-            Part of the Lux Automaton ecosystem · <a href="https://luxautomaton-ux.github.io/lux-agent-website/" target="_blank" style="color: var(--accent-green); text-decoration: underline;">Lux Agent</a>
-        </p>
-    </section>
-
-    <!-- ═══════════════════════════════════ FOOTER ═══════════════════════════════════ -->
-    <footer>
-        <div class="footer-container">
-            <div class="footer-top">
-                <div class="footer-brand">
-                    <div class="footer-logo">
-                        <img src="lux-coder-logo.jpeg" alt="Lux Coder" class="sharp-edge" style="border-radius: 4px;">
-                        <span style="background: linear-gradient(135deg, #fff 40%, var(--accent-cyan)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Lux Coder</span>
-                    </div>
-                    <p>Orchestrate the best AI models from one branded standalone app or editor command center. Zero vendor lock-in.</p>
-                </div>
-                <div class="footer-column">
-                    <h4>Software Suite</h4>
-                    <ul>
-                        <li><a href="features.html">Features Catalog</a></li>
-                        <li><a href="comparison.html">Compare Systems</a></li>
-                        <li><a href="index.html#pricing">Subscription Pricing</a></li>
-                        <li><a href="download.html" style="color: var(--accent-cyan);">Downloads</a></li>
-                        <li><a href="license.html">License Lookups</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h4>Ecosystem Nodes</h4>
-                    <ul>
-                        <li><a href="usb.html">Lux Agent USB</a></li>
+            <div>
+                <h3>Website</h3>
+                <ul><li><a href="coder.html">Lux Coder</a></li>
+                        <li><a href="features.html">Features</a></li>
+                        <li><a href="feature-lana-jarvis.html">LANA + Jarvis</a></li>
+                        <li><a href="feature-model-switcher.html">Model Switcher</a></li>
+                        <li><a href="feature-mindmap.html">3D Mindmap</a></li>
+                        <li><a href="feature-apps-built-preview.html">Apps Built Preview</a></li>
+                        <li><a href="feature-skills.html">Skills</a></li>
+                        <li><a href="feature-loops.html">Loops</a></li>
+                        <li><a href="comparison.html">Comparison</a></li>
+                        <li><a href="download.html">Download</a></li>
+                        <li><a href="pricing.html">Pricing</a></li>
+                        <li><a href="usb.html">Agent USB</a></li>
                         <li><a href="packs.html">Success Packs</a></li>
-                        <li><a href="partners.html">Partners Program</a></li>
-                        <li><a href="affiliate.html">Affiliate Rewards</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h4>Resources</h4>
-                    <ul>
-                        <li><a href="https://luxautomaton-ux.github.io/lux-agent-website/" target="_blank">Lux Agent Web</a></li>
-                        <li><a href="#">System Docs</a></li>
-                        <li><a href="#">API Reference</a></li>
-                        <li><a href="#">Developer Support</a></li>
-                    </ul>
-                </div>
+                        <li><a href="license.html">License Lookup</a></li>
+                        <li><a href="affiliate.html">Affiliate</a></li>
+                        <li><a href="partners.html">Partners</a></li></ul>
             </div>
-            <div class="footer-bottom">
-                <p>© 2026 Lux Automaton. All rights reserved. Developed under sovereignty guidelines.</p>
-                <p>Build faster. Run smarter. Own your AI system.</p>
+            <div>
+                <h3>Actions</h3>
+                <ul>
+                    <li><a href="download.html">Download Suite</a></li>
+                    <li><a href="pricing.html">View Pricing</a></li>
+                    <li><a href="license.html">Lookup License</a></li>
+                    <li><a href="mailto:sales@luxautomaton.com">Contact Sales</a></li>
+                </ul>
             </div>
+        </div>
+        <div class="footer-bottom">
+            <span>Lux Automaton</span>
+            <span>Automate | Innovate | Accelerate</span>
         </div>
     </footer>
-
     <script src="script.js"></script>
 </body>
 </html>
